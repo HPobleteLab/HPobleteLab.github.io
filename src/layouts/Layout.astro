@@ -13,37 +13,24 @@ interface Props {
 
 const {
   title,
-  description = "HPoblete Lab - Bio-nanomaterial Simulations group at Universidad de Talca. Exploring the intersection of biology, nanotechnology, and computer science.",
-  image = "/images/placeholder.jpg"
+  description = "HPoblete Lab, the Bio-nanomaterial Simulations Group at Universidad de Talca, Chile. Theoretical and computational biophysics at the interface between biomolecules and nanomaterials.",
+  image = "/images/banner-1200.jpg"
 } = Astro.props;
 ---
 <!doctype html>
-<html lang="en" class="bg-lab-dark dark:bg-[#0B1121] scroll-smooth">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+    <link rel="preload" href="/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
 
     <SEOMeta title={title} description={description} image={image} />
-
-    <!-- Applies the saved (or system) theme before first paint to avoid a flash. -->
-    <script is:inline>
-      (() => {
-        let theme = null;
-        try { theme = localStorage.getItem('theme'); } catch {}
-        if (!theme) theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        document.documentElement.classList.toggle('dark', theme === 'dark');
-      })();
-    </script>
-
-    <!-- Without JavaScript the scroll-reveal never fires, so show everything. -->
-    <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
   </head>
 
-  <body class="min-h-screen flex flex-col bg-lab-light dark:bg-[#0B1121] text-lab-dark dark:text-gray-200 transition-colors duration-300">
-
+  <body class="min-h-screen flex flex-col">
     <Header />
 
     <main class="grow">
@@ -51,19 +38,5 @@ const {
     </main>
 
     <Footer />
-
-    <script>
-      // Scroll reveal: elements with .reveal fade in once, when they enter the viewport.
-      const observer = new IntersectionObserver((entries, obs) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            obs.unobserve(entry.target);
-          }
-        }
-      }, { threshold: 0, rootMargin: '0px 0px -50px 0px' });
-
-      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-    </script>
   </body>
 </html>

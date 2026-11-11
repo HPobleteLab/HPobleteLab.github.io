@@ -1,7 +1,6 @@
 ---
 // src/components/sections/Header.astro
 const links = [
-  { href: '/', label: 'Home' },
   { href: '/research', label: 'Research' },
   { href: '/publications', label: 'Publications' },
   { href: '/team', label: 'Team' },
@@ -9,74 +8,33 @@ const links = [
 
 // Built pages are served as /team/, so drop the trailing slash before comparing.
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
-const isActive = (href: string) => currentPath === href;
-
-const linkClass = (href: string) => isActive(href)
-  ? "text-orange-600 dark:text-lab-orange font-bold"
-  : "text-white hover:text-orange-600 dark:hover:text-lab-orange";
 ---
 
-<header class="bg-lab-dark py-5 px-6 md:px-8 flex justify-between items-center text-sm font-sans fixed top-0 left-0 z-50 w-full shadow-lg">
-
-  <div class="flex flex-col z-50 relative">
-    <a href="/" class="text-xl font-bold tracking-tight hover:text-lab-blue transition-colors text-white">
+<header class="bg-white">
+  <div class="page flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2 py-5">
+    <a href="/" class="text-lg font-semibold tracking-tight">
       HPoblete Lab
+      <span class="hidden sm:inline font-normal text-muted"> / Bio-nanomaterial Simulations Group</span>
     </a>
-    <span class="text-[9px] md:text-[10px] uppercase tracking-wider text-gray-400 font-medium">
-      Bio-nanomaterial Simulations Group
-    </span>
-  </div>
 
-  <div class="flex items-center gap-6 z-50 relative">
-    <nav aria-label="Main" class="hidden md:flex items-center gap-8 uppercase tracking-wider text-sm font-semibold mr-4 border-r border-gray-700 pr-8">
-      {links.map(({ href, label }) => (
-        <a href={href} class={`${linkClass(href)} transition-colors`} aria-current={isActive(href) ? 'page' : undefined}>{label}</a>
-      ))}
+    <nav aria-label="Main">
+      <ul class="flex gap-6 sm:gap-8 text-[0.95rem]">
+        {links.map(({ href, label }) => {
+          const active = currentPath === href;
+          return (
+            <li>
+              <a
+                href={href}
+                aria-current={active ? 'page' : undefined}
+                class:list={[
+                  'pb-1 border-b-2 transition-colors',
+                  active ? 'border-accent text-ink font-medium' : 'border-transparent text-muted hover:text-ink',
+                ]}
+              >{label}</a>
+            </li>
+          );
+        })}
+      </ul>
     </nav>
-
-    <button id="theme-toggle" type="button" aria-label="Toggle dark mode" class="p-2 text-white dark:text-gray-400 hover:text-orange-600 dark:hover:text-lab-orange transition-colors">
-      <svg class="w-5 h-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-      </svg>
-      <svg class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-        <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
-      </svg>
-    </button>
-
-    <button id="mobile-menu-btn" type="button" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false" class="md:hidden text-white hover:text-orange-600 dark:hover:text-lab-orange ml-2">
-      <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-    </button>
   </div>
-
-  <nav id="mobile-menu" aria-label="Mobile" class="fixed inset-0 bg-lab-dark hidden flex-col items-center justify-center gap-10 uppercase tracking-widest text-2xl font-bold z-[100]">
-    <button id="close-menu-btn" type="button" aria-label="Close menu" class="absolute top-6 right-6 text-gray-400 hover:text-white p-3">
-      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-    </button>
-    {links.map(({ href, label }) => (
-      <a href={href} class={`${linkClass(href)} transition-colors`}>{label}</a>
-    ))}
-  </nav>
 </header>
-
-<script>
-  // Theme toggle: the choice is remembered across visits.
-  document.getElementById('theme-toggle')?.addEventListener('click', () => {
-    const isDark = document.documentElement.classList.toggle('dark');
-    try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch {}
-  });
-
-  // Mobile menu.
-  const menu = document.getElementById('mobile-menu');
-  const openBtn = document.getElementById('mobile-menu-btn');
-
-  const setMenu = (open: boolean) => {
-    menu?.classList.toggle('hidden', !open);
-    menu?.classList.toggle('flex', open);
-    openBtn?.setAttribute('aria-expanded', String(open));
-    document.body.style.overflow = open ? 'hidden' : '';
-  };
-
-  openBtn?.addEventListener('click', () => setMenu(true));
-  document.getElementById('close-menu-btn')?.addEventListener('click', () => setMenu(false));
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
-</script>

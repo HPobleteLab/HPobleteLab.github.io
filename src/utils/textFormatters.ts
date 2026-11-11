@@ -14,11 +14,9 @@ const escapeHtml = (text: string) =>
 // Returns an HTML string: the input is escaped first, so it is safe to use with set:html.
 export const highlightAuthor = (authorsString: string) => {
   let result = escapeHtml(authorsString);
-  // Nivel 1: PI (Naranja Extra Negrita Alto Contraste)
-  result = result.replace(piRegex, '<span class="font-extrabold text-orange-600 dark:text-orange-400">$1</span>');
-  // Nivel 2: Current Team (Azul)
-  result = result.replace(currentMembersRegex, '<span class="font-bold text-lab-blue dark:text-blue-400">$1</span>');
-  // Nivel 3: Former Mentees (Gris Oscuro/Claro)
-  result = result.replace(alumniRegex, '<span class="font-bold text-slate-800 dark:text-gray-300">$1</span>');
+  // Group members (PI, current, former) are set in ink against the muted author line.
+  result = result.replace(piRegex, '<span class="font-medium text-ink">$1</span>');
+  result = result.replace(currentMembersRegex, '<span class="font-medium text-ink">$1</span>');
+  result = result.replace(alumniRegex, '<span class="font-medium text-ink">$1</span>');
   return result;
 };

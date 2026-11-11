@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# full-resolution source renders (web-sized copies live in public/images)
+renders-src/

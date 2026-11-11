@@ -1,90 +1,49 @@
 ---
 // src/pages/research.astro
+// Research lines are edited in src/data/research.json.
 import Layout from '../layouts/Layout.astro';
+import research from '../data/research.json';
+
+interface Paper { title: string; doi: string; }
+interface Line { title: string; summary: string; papers: Paper[]; }
+
+const lines = research as Line[];
 ---
 
 <Layout title="Research | HPoblete Lab">
-  <div class="bg-slate-50 dark:bg-[#0B1121] min-h-screen transition-colors duration-300">
-    <div class="max-w-7xl mx-auto px-6 pt-24 pb-24 md:pt-32">
-      
-      <div class="mb-16 border-b border-gray-200 dark:border-[#1E293B] pb-6">
-        <h1 class="reveal text-4xl md:text-5xl font-bold text-lab-dark dark:text-gray-100 border-l-4 border-lab-red pl-4">
-          Research Lines
-        </h1>
-      </div>
+  <div class="page pt-12 md:pt-16">
+    <h1 class="text-4xl md:text-5xl font-medium tracking-tight">Research</h1>
+    <p class="mt-6 text-lg md:text-xl leading-relaxed text-muted max-w-[58ch]">
+      We use state-of-the-art computational tools to simulate and understand the interface between biological molecules and engineered nanomaterials.
+    </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-        
-        <!-- LÍNEA 1 -->
-        <div class="reveal h-full">
-          <article class="flex flex-col h-full bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#1E293B] shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-500 rounded-sm overflow-hidden">
-            
-            <div class="relative w-full h-64 md:h-72 bg-gray-900 overflow-hidden shrink-0">
-              <div class="absolute inset-0 bg-lab-dark/10 transition-colors duration-500 z-10 mix-blend-multiply"></div>
-              <img src="/images/placeholder.jpg" alt="Protein-Nanoparticle Interactions" class="w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-105" />
-            </div>
+    <figure class="mt-12 md:mt-16">
+      <img
+        src="/images/nanoparticle-membrane.webp"
+        width="1800"
+        height="1002"
+        alt="Render of a coated nanoparticle embedded in a layer of molecules."
+        class="w-full h-auto max-w-5xl mx-auto"
+      />
+      {/* TODO: caption for this render (system, method, reference). */}
+    </figure>
 
-            <div class="p-8 md:p-10 flex flex-col grow border-t-4 border-lab-blue">
-              <h2 class="text-2xl md:text-3xl font-bold leading-tight mb-4 text-lab-dark dark:text-gray-100">
-                Protein-Nanoparticle Interactions
-              </h2>
-              
-              <p class="text-lg md:text-xl leading-relaxed text-gray-600 dark:text-gray-400 mb-8 grow">
-                We investigate how proteins adsorb, unfold, and interact with various nanoparticle surfaces at the atomistic level to understand their biological impact.
-              </p>
-
-              {/* TODO: add representative papers for this line (real titles + DOI links). */}
-            </div>
-          </article>
-        </div>
-
-        <!-- LÍNEA 2 -->
-        <div class="reveal h-full">
-          <article class="flex flex-col h-full bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#1E293B] shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-500 rounded-sm overflow-hidden">
-            
-            <div class="relative w-full h-64 md:h-72 bg-gray-900 overflow-hidden shrink-0">
-              <div class="absolute inset-0 bg-lab-dark/10 transition-colors duration-500 z-10 mix-blend-multiply"></div>
-              <img src="/images/placeholder.jpg" alt="Drug Delivery Systems" class="w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-105" />
-            </div>
-
-            <div class="p-8 md:p-10 flex flex-col grow border-t-4 border-lab-blue">
-              <h2 class="text-2xl md:text-3xl font-bold leading-tight mb-4 text-lab-dark dark:text-gray-100">
-                Drug Delivery Systems
-              </h2>
-              
-              <p class="text-lg md:text-xl leading-relaxed text-gray-600 dark:text-gray-400 mb-8 grow">
-                Design and computational evaluation of novel nanocarriers for targeted drug delivery, focusing on molecular stability and release mechanisms.
-              </p>
-
-              {/* TODO: add representative papers for this line (real titles + DOI links). */}
-            </div>
-          </article>
-        </div>
-
-        <!-- LÍNEA 3 -->
-        <div class="reveal h-full">
-          <article class="flex flex-col h-full bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#1E293B] shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-500 rounded-sm overflow-hidden">
-            
-            <div class="relative w-full h-64 md:h-72 bg-gray-900 overflow-hidden shrink-0">
-              <div class="absolute inset-0 bg-lab-dark/10 transition-colors duration-500 z-10 mix-blend-multiply"></div>
-              <img src="/images/placeholder.jpg" alt="Advanced Biomaterial Design" class="w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-105" />
-            </div>
-
-            <div class="p-8 md:p-10 flex flex-col grow border-t-4 border-lab-blue">
-              <h2 class="text-2xl md:text-3xl font-bold leading-tight mb-4 text-lab-dark dark:text-gray-100">
-                Advanced Biomaterial Design
-              </h2>
-              
-              <p class="text-lg md:text-xl leading-relaxed text-gray-600 dark:text-gray-400 mb-8 grow">
-                Applying multiscale modeling techniques to develop advanced biomaterials with specific mechanical and chemical properties for tissue engineering.
-              </p>
-
-              {/* TODO: add representative papers for this line (real titles + DOI links). */}
-            </div>
-          </article>
-        </div>
-
-      </div>
+    <div class="mt-12 md:mt-16 border-t border-line">
+      {lines.map((line) => (
+        <section class="py-10 border-b border-line grid md:grid-cols-12 gap-x-12 gap-y-4">
+          <h2 class="md:col-span-4 text-2xl font-medium tracking-tight">{line.title}</h2>
+          <div class="md:col-span-8">
+            <p class="text-lg leading-relaxed max-w-[62ch]">{line.summary}</p>
+            {line.papers.length > 0 && (
+              <ul class="mt-6 space-y-2 text-muted">
+                {line.papers.map((paper) => (
+                  <li><a href={`https://doi.org/${paper.doi}`} target="_blank" rel="noopener noreferrer" class="link">{paper.title}</a></li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </section>
+      ))}
     </div>
   </div>
 </Layout>

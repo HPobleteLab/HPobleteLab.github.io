@@ -29,3 +29,13 @@ export const initials = (name: string) =>
     .slice(0, 2)
     .map((part) => part[0]?.toUpperCase() ?? '')
     .join('');
+
+// Contact and profile links for a member, in display order.
+export const memberLinks = (data: Member['data']) =>
+  [
+    data.email && { label: 'Email', href: `mailto:${data.email}` },
+    data.orcid && { label: 'ORCID', href: `https://orcid.org/${data.orcid}` },
+    data.googleScholar && { label: 'Google Scholar', href: data.googleScholar },
+    data.github && { label: 'GitHub', href: data.github },
+    data.linkedin && { label: 'LinkedIn', href: data.linkedin },
+  ].filter(Boolean) as { label: string; href: string }[];

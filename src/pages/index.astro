@@ -1,52 +1,74 @@
 ---
 // src/pages/index.astro
 import Layout from '../layouts/Layout.astro';
-import HomeResearch from '../components/sections/HomeResearch.astro';
-import HomeFunding from '../components/sections/HomeFunding.astro';
-
+import research from '../data/research.json';
+import funding from '../data/funding.json';
 ---
 
-<Layout title="HPoblete Lab - Bio-nanomaterial Simulations">
-  
-  <section id="hero" class="reveal relative min-h-screen flex flex-col justify-center w-full bg-white dark:bg-transparent transition-colors duration-300 pt-24 pb-32">
-    <div class="max-w-7xl mx-auto px-6 w-full flex flex-col md:flex-row items-center gap-12 lg:gap-20">
-      <div class="md:w-1/2 z-10">
-        <span class="text-xs font-bold tracking-widest text-orange-600 dark:text-lab-orange uppercase mb-4 block">
-          Universidad de Talca
-        </span>
-        <h1 class="text-5xl md:text-6xl font-extrabold text-lab-dark dark:text-gray-100 tracking-tight mb-6 leading-tight">
-          HPoblete Lab
-        </h1>
-        <p class="text-2xl text-gray-600 dark:text-gray-400 mb-10 leading-relaxed border-l-4 border-lab-blue pl-6">
-          Bio-nanomaterial Simulations Group focused on theoretical and computational biophysics, specializing in protein adsorption on nanosurfaces.
-        </p>
-      </div>
+<Layout title="HPoblete Lab | Bio-nanomaterial Simulations Group">
 
-      <div class="md:w-1/2 w-full">
-        <div class="relative">
-          <div class="absolute inset-0 bg-orange-600 dark:bg-lab-orange translate-x-3 translate-y-3 -z-10 opacity-100 dark:opacity-80 rounded-sm shadow-lg"></div>
-          <img 
-            src="/images/hero-bg.jpg" 
-            alt="Molecular Simulation" 
-            class="w-full h-100 md:h-125 object-cover border border-gray-200 dark:border-[#1E293B] z-10 bg-white dark:bg-[#0F172A] p-2 rounded-sm shadow-md transition-colors" 
-          />
-        </div>
-      </div>
-    </div>
+  <!-- Banner: the group's render, edge to edge. -->
+  <img
+    src="/images/banner-2400.jpg"
+    srcset="/images/banner-1200.jpg 1200w, /images/banner-2400.jpg 2400w"
+    sizes="100vw"
+    width="2400"
+    height="1154"
+    alt="Rendered molecular systems studied by the group: two nanoparticles above peptides adsorbed on a flat surface."
+    class="block w-full h-auto max-md:aspect-[3/2] max-md:object-cover"
+    fetchpriority="high"
+  />
 
-    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center opacity-70 hover:opacity-100 transition-opacity animate-bounce">
-      <span class="text-[9px] uppercase tracking-[0.2em] mb-2 font-bold text-gray-400 dark:text-gray-500">Scroll</span>
-      <a href="#research" aria-label="Scroll to Research" class="text-gray-400 dark:text-gray-500 hover:text-orange-600 dark:hover:text-lab-orange transition-colors">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-      </a>
-    </div>
+  <section class="page pt-14 md:pt-20">
+    <h1 class="text-[2rem] leading-[1.15] md:text-[3.25rem] md:leading-[1.08] font-medium tracking-tight max-w-[22ch]">
+      We simulate the interface between biological molecules and engineered nanomaterials.
+    </h1>
+    <p class="mt-8 text-lg md:text-xl leading-relaxed text-muted max-w-[58ch]">
+      The Bio-nanomaterial Simulations Group at Universidad de Talca works on theoretical and computational biophysics, specializing in protein adsorption on nanosurfaces.
+    </p>
   </section>
 
-  <div class="flex flex-col w-full">
-    
-    <HomeResearch />
+  <section class="page mt-24 md:mt-32 grid md:grid-cols-12 gap-x-12 gap-y-10 items-start">
+    <div class="md:col-span-5">
+      <h2 class="text-2xl md:text-3xl font-medium tracking-tight">Research</h2>
+      <ul class="mt-8 border-t border-line">
+        {research.map((line) => (
+          <li class="py-5 border-b border-line">
+            <h3 class="font-medium text-lg">{line.title}</h3>
+            <p class="mt-1.5 text-muted leading-relaxed">{line.summary}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="mt-6"><a href="/research" class="link">More about our research</a></p>
+    </div>
 
-    <HomeFunding />
+    <figure class="md:col-span-7">
+      <img
+        src="/images/peptides-graphite.jpg"
+        width="1600"
+        height="900"
+        loading="lazy"
+        alt="Close-up render of peptide chains lying on a surface."
+        class="w-full h-auto"
+      />
+      {/* TODO: caption for this render (system, method, reference). */}
+    </figure>
+  </section>
 
-  </div>
+  <section class="page mt-24 md:mt-32">
+    <h2 class="text-2xl md:text-3xl font-medium tracking-tight">Funding</h2>
+    <ul class="mt-8 border-t border-line">
+      {funding.map((item) => (
+        <li class="py-5 border-b border-line grid md:grid-cols-12 gap-x-12 gap-y-1">
+          <p class="md:col-span-2 text-muted tabular-nums">{item.years}</p>
+          <div class="md:col-span-4">
+            <p class="font-medium">{item.grant}</p>
+            <p class="text-muted">{item.role}</p>
+          </div>
+          <p class="md:col-span-6 text-muted italic leading-relaxed">{item.project}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
 </Layout>

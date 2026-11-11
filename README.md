@@ -18,9 +18,11 @@ npm run build      # production build into dist/
 src/pages/              one file per page (index, research, publications, team, 404)
 src/components/         header, footer, home sections, team card
 src/content/team/       one JSON file per lab member
-src/data/               publication list (generated) and its exclusion list
-src/styles/global.css   colors and global styles
-public/images/          photos and figures, served as /images/...
+src/data/               research lines, funding, publication list (generated) and its exclusion list
+src/styles/global.css   typeface, colors and shared styles
+public/images/          web-sized photos and renders, served as /images/...
+public/fonts/           IBM Plex Sans (self-hosted)
+renders-src/            full-resolution renders, not tracked by git
 scripts/                update-publications.mjs
 ```
 
@@ -44,6 +46,14 @@ Create `src/content/team/first-last.json`:
 `category` must be one of `Principal Investigator`, `Postdoc`, `Research Assistant`, `PhD Student`, `Undergraduate Student`, `Alumni`, and decides the section the member appears in. `order` sorts members inside their section. Every field other than `name`, `role` and `category` is optional; a member without `image` is shown with initials. Photos go in `public/images/team/`, ideally square and under 300 kB.
 
 When someone leaves the group, change `category` to `Alumni` and `role` to something like `Former PhD Student (2021-2025)`.
+
+## Edit research lines and funding
+
+Both are plain lists: `src/data/research.json` (title, summary and an optional `papers` array of `{ "title", "doi" }`) and `src/data/funding.json`.
+
+## Add an image
+
+Keep the original in `renders-src/` and put a web-sized copy in `public/images/` (JPEG for opaque renders, WebP for transparent ones, around 1600 to 2400 px wide and under 400 kB). Files over 100 MB cannot be pushed to GitHub.
 
 ## Update the publication list
 

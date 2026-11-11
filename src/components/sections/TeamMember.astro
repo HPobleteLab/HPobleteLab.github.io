@@ -1,49 +1,36 @@
 ---
 // src/components/sections/TeamMember.astro
-// Card for current members: photo (or initials), name, role, short bio and links.
+// Current member: photo (or initials), name, role, short bio and links.
 import type { CollectionEntry } from 'astro:content';
-import { initials } from '../../utils/collections';
+import { initials, memberLinks } from '../../utils/collections';
 
 interface Props {
   member: CollectionEntry<'team'>;
 }
 
 const { data } = Astro.props.member;
-
-const links = [
-  data.email && { label: 'Email', href: `mailto:${data.email}` },
-  data.orcid && { label: 'ORCID', href: `https://orcid.org/${data.orcid}` },
-  data.googleScholar && { label: 'Scholar', href: data.googleScholar },
-  data.github && { label: 'GitHub', href: data.github },
-  data.linkedin && { label: 'LinkedIn', href: data.linkedin },
-].filter(Boolean) as { label: string; href: string }[];
+const links = memberLinks(data);
 ---
 
-<article class="flex flex-col h-full bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#1E293B] rounded-sm overflow-hidden">
+<article>
   {data.image ? (
-    <img src={data.image} alt={data.name} loading="lazy" class="w-full aspect-square object-cover" />
+    <img src={data.image} alt={data.name} loading="lazy" class="w-full aspect-[4/5] object-cover bg-wash" />
   ) : (
-    <div class="w-full aspect-square flex items-center justify-center bg-slate-200 dark:bg-slate-800 text-5xl font-bold tracking-tight text-slate-400 dark:text-slate-600" aria-hidden="true">
+    <div class="w-full aspect-[4/5] flex items-center justify-center bg-wash text-4xl font-medium text-muted/50" aria-hidden="true">
       {initials(data.name)}
     </div>
   )}
 
-  <div class="flex flex-col grow p-6">
-    <h3 class="font-bold text-lg text-lab-dark dark:text-gray-100 leading-tight">{data.name}</h3>
-    <p class="text-[11px] font-bold uppercase tracking-widest mt-1 text-orange-600 dark:text-lab-orange">{data.role}</p>
+  <h3 class="mt-4 font-medium text-lg leading-snug">{data.name}</h3>
+  <p class="text-muted">{data.role}</p>
 
-    {data.bio && (
-      <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mt-4">{data.bio}</p>
-    )}
+  {data.bio && <p class="mt-3 text-[0.95rem] leading-relaxed text-muted">{data.bio}</p>}
 
-    {links.length > 0 && (
-      <ul class="flex flex-wrap gap-x-4 gap-y-1 mt-auto pt-5 text-xs font-bold uppercase tracking-wider">
-        {links.map(({ label, href }) => (
-          <li>
-            <a href={href} target={href.startsWith('mailto:') ? undefined : '_blank'} rel="noopener noreferrer" class="text-lab-blue dark:text-blue-400 hover:underline">{label}</a>
-          </li>
-        ))}
-      </ul>
-    )}
-  </div>
+  {links.length > 0 && (
+    <p class="mt-3 text-[0.95rem] flex flex-wrap gap-x-4 gap-y-1">
+      {links.map(({ label, href }) => (
+        <a href={href} target={href.startsWith('mailto:') ? undefined : '_blank'} rel="noopener noreferrer" class="link">{label}</a>
+      ))}
+    </p>
+  )}
 </article>
