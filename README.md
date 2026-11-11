@@ -49,7 +49,7 @@ When someone leaves the group, change `category` to `Alumni` and `role` to somet
 
 ## Edit research lines and funding
 
-Research lines live in `src/data/research.json`: `title`, `summary`, an optional `image` with its `alt` text, and a `papers` array of `{ "title", "venue", "doi" }`. Lines with an image are featured on the home page.
+Research lines live in `src/data/research.json`: `title`, `summary`, an optional `image` with its `alt` text, and a `papers` array of `{ "title", "venue", "doi" }`. Every line appears on the home page; add `"light": true` when the image has a white background, so it is shown on a white panel instead of as a full-bleed tile.
 
 Funding lives in `src/data/funding.json`, split into `current` (shown on the home page) and `past` (collapsed under "Past funding"). When a grant ends, move it from one list to the other.
 

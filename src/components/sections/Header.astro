@@ -10,7 +10,7 @@ const links = [
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 
-<header class="sticky top-0 z-40 bg-night text-white">
+<header class="sticky top-0 z-40 bg-night/92 backdrop-blur-md text-white">
   <div class="page flex flex-wrap items-center justify-between gap-x-8 gap-y-1 py-4">
     <a href="/" class="text-lg font-semibold tracking-tight">HPoblete Lab</a>
 
@@ -24,7 +24,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
                 href={href}
                 aria-current={active ? 'page' : undefined}
                 class:list={[
-                  'block px-3 py-1.5 rounded-full transition-colors',
+                  'block px-3 py-1.5 rounded-full transition-colors duration-300',
                   active ? 'bg-white/12 text-white' : 'text-white/70 hover:text-white hover:bg-white/8',
                 ]}
               >{label}</a>

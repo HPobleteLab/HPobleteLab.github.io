@@ -14,7 +14,7 @@ const latest = publications.slice(0, 4);
   <!-- First screen: the banner render and the summary fit together in one viewport.
        The banner is cropped vertically on short windows; the group name sits in the
        empty sky between the two nanoparticles, sized relative to the image width. -->
-  <section class="hero relative bg-night">
+  <section class="hero relative">
     <img
       src="/images/banner-2400.jpg"
       srcset="/images/banner-1200.jpg 1200w, /images/banner-2400.jpg 2400w"
@@ -25,13 +25,14 @@ const latest = publications.slice(0, 4);
       class="hero-image"
       fetchpriority="high"
     />
+    <div class="hero-fade" aria-hidden="true"></div>
     <div class="hero-title max-md:hidden">
       <h1>HPoblete Lab</h1>
       <p>Bio-nanomaterial Simulations Group</p>
     </div>
   </section>
 
-  <section class="page py-10 md:py-14 grid md:grid-cols-12 gap-x-12 gap-y-6 items-end">
+  <section class="page pt-6 pb-12 md:pt-8 md:pb-16 grid md:grid-cols-12 gap-x-12 gap-y-6 items-end">
     <div class="md:col-span-7">
       <h1 class="md:hidden text-muted mb-3">HPoblete Lab, Bio-nanomaterial Simulations Group</h1>
       <p class="text-[2rem] leading-[1.12] md:text-[3.25rem] md:leading-[1.05] font-medium tracking-tight">
@@ -50,7 +51,7 @@ const latest = publications.slice(0, 4);
   </section>
 
   <!-- Research: renders on the dark lattice band. -->
-  <section class="lattice py-16 md:py-24">
+  <section class="lattice panel mx-2 md:mx-4 py-16 md:py-24">
     <div class="page">
       <div class="flex flex-wrap items-baseline justify-between gap-4">
         <h2 class="h-section">What we work on</h2>
@@ -58,7 +59,7 @@ const latest = publications.slice(0, 4);
       </div>
 
       <div class="mt-10 grid gap-5 md:grid-cols-12">
-        <a href={`/research#${lead.id}`} class="tile md:col-span-7 md:row-span-2 min-h-[26rem]">
+        <a href={`/research#${lead.id}`} class="tile soft rise md:col-span-7 md:row-span-2 min-h-[26rem]">
           <img src={lead.image} alt={lead.alt} loading="lazy" />
           <div>
             <h3 class="text-2xl md:text-4xl font-medium tracking-tight leading-[1.1] max-w-[16ch]">{lead.title}</h3>
@@ -66,8 +67,8 @@ const latest = publications.slice(0, 4);
           </div>
         </a>
 
-        {rest.filter((line) => line.image).map((line) => (
-          <a href={`/research#${line.id}`} class="tile md:col-span-5 min-h-[17rem]">
+        {rest.filter((line) => line.image && !line.light).map((line) => (
+          <a href={`/research#${line.id}`} class="tile soft rise md:col-span-5 min-h-[17rem]">
             <img src={line.image} alt={line.alt} loading="lazy" />
             <div>
               <h3 class="text-xl md:text-2xl font-medium tracking-tight leading-tight max-w-[20ch]">{line.title}</h3>
@@ -77,10 +78,16 @@ const latest = publications.slice(0, 4);
         ))}
       </div>
 
-      {rest.filter((line) => !line.image).map((line) => (
-        <a href={`/research#${line.id}`} class="group mt-5 block border border-white/15 p-6 md:p-8 hover:border-leaf transition-colors">
-          <h3 class="text-xl md:text-2xl font-medium tracking-tight group-hover:text-leaf">{line.title}</h3>
-          <p class="mt-2 text-white/70 max-w-[70ch]">{line.teaser}</p>
+      {/* Lines whose figure has a white background get a split tile. */}
+      {rest.filter((line) => line.light).map((line) => (
+        <a href={`/research#${line.id}`} class="group soft rise mt-5 grid md:grid-cols-12 overflow-hidden bg-white/[0.06] hover:bg-white/[0.1] transition-colors duration-500">
+          <div class="md:col-span-5 p-7 md:p-9 self-center">
+            <h3 class="text-xl md:text-2xl font-medium tracking-tight leading-tight group-hover:text-leaf transition-colors duration-300">{line.title}</h3>
+            <p class="mt-2 text-white/75 leading-snug max-w-[40ch]">{line.teaser}</p>
+          </div>
+          <div class="md:col-span-7 bg-white p-4 md:p-6 flex items-center justify-center">
+            <img src={line.image} alt={line.alt} loading="lazy" class="w-full h-auto max-h-64 object-contain" />
+          </div>
         </a>
       ))}
     </div>
@@ -93,13 +100,13 @@ const latest = publications.slice(0, 4);
         <a href="/publications" class="link">All publications</a>
       </div>
 
-      <ol class="mt-10 grid gap-x-12 gap-y-10 md:grid-cols-2">
+      <ol class="mt-10 grid gap-5 md:grid-cols-2">
         {latest.map((pub) => (
-          <li class="border-t-2 border-ink pt-4">
+          <li class="rise">
+            <a href={`https://doi.org/${pub.doi}`} target="_blank" rel="noopener noreferrer" class="lift soft block h-full bg-wash hover:bg-white p-6 md:p-7">
             <p class="text-accent font-medium"><em>{pub.journal}</em>, {pub.year}</p>
-            <h3 class="mt-1 text-xl font-medium leading-snug">
-              <a href={`https://doi.org/${pub.doi}`} target="_blank" rel="noopener noreferrer" class="hover:text-accent">{pub.title}</a>
-            </h3>
+            <h3 class="mt-1 text-xl font-medium leading-snug">{pub.title}</h3>
+            </a>
           </li>
         ))}
       </ol>
@@ -107,7 +114,7 @@ const latest = publications.slice(0, 4);
   )}
 
   <!-- Join: the render overlaps the edge of the band. -->
-  <section class="bg-wash overflow-hidden">
+  <section class="panel mx-2 md:mx-4 bg-gradient-to-br from-wash to-white">
     <div class="page grid md:grid-cols-12 gap-x-12 items-center">
       <div class="md:col-span-6 py-16 md:py-24">
         <h2 class="h-section">Work with us</h2>
@@ -117,10 +124,10 @@ const latest = publications.slice(0, 4);
         <p class="mt-6"><a href="mailto:hopoblete@utalca.cl" class="btn">hopoblete@utalca.cl</a></p>
       </div>
       <img
-        src="/images/nanoparticle-membrane-violet.webp"
+        src="/images/nanoparticle-membrane.webp"
         alt=""
         loading="lazy"
-        class="md:col-span-6 w-[120%] max-w-none md:-mr-24 max-md:-mt-6 max-md:pb-10"
+        class="rise md:col-span-6 w-[120%] max-w-none md:-mr-24 max-md:-mt-6 max-md:pb-10"
       />
     </div>
   </section>
@@ -130,15 +137,15 @@ const latest = publications.slice(0, 4);
 
     <div class="md:col-span-8">
       {funding.current.map((item) => (
-        <div class="border-l-4 border-accent pl-6 py-1">
-          <p class="text-2xl md:text-3xl font-medium tracking-tight">{item.grant}</p>
+        <div class="soft bg-wash p-7 md:p-9">
+          <p class="text-2xl md:text-3xl font-medium tracking-tight text-accent">{item.grant}</p>
           <p class="mt-1 text-muted">Project No. {item.number}, {item.agency}</p>
           <p class="text-muted">{item.role}</p>
         </div>
       ))}
 
       <details class="mt-8">
-        <summary class="cursor-pointer text-muted hover:text-ink">Past funding</summary>
+        <summary class="cursor-pointer text-muted hover:text-ink transition-colors pl-2">Past funding</summary>
         <ul class="mt-4 border-t border-line">
           {funding.past.map((item) => (
             <li class="py-4 border-b border-line">
@@ -170,6 +177,22 @@ const latest = publications.slice(0, 4);
   }
   @media (max-width: 47.99rem) {
     .hero-image { aspect-ratio: 3 / 2; max-height: none; }
+  }
+  /* The floor of the render dissolves into the page instead of ending on a hard edge. */
+  .hero-fade {
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 12%;
+    background: linear-gradient(to bottom, rgb(255 255 255 / 0), white);
+    pointer-events: none;
+  }
+  /* The name settles in once, on load. */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-title { animation: settle 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  }
+  @keyframes settle {
+    from { opacity: 0; translate: 0 0.8cqw; }
+    to { opacity: 1; translate: 0 0; }
   }
   /* Centred on the gap between the two nanoparticles (about 54% across). */
   .hero-title {
@@ -208,7 +231,7 @@ const latest = publications.slice(0, 4);
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
+    transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
   }
   .tile:hover img {
     transform: scale(1.04);

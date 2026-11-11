@@ -23,7 +23,7 @@ const SCHOLAR_URL = 'https://scholar.google.com/citations?user=feuxRSEAAAAJ&hl=e
 ---
 
 <Layout title="Publications | HPoblete Lab">
-  <section class="bg-wash">
+  <section class="panel mx-2 md:mx-4 mt-2 bg-gradient-to-br from-wash to-white">
     <div class="page py-14 md:py-20 flex flex-wrap items-end justify-between gap-6">
       <h1 class="text-4xl md:text-6xl font-medium tracking-tight">Publications</h1>
       <a href={SCHOLAR_URL} target="_blank" rel="noopener noreferrer" class="btn btn-quiet bg-white">Google Scholar profile</a>
@@ -40,11 +40,11 @@ const SCHOLAR_URL = 'https://scholar.google.com/citations?user=feuxRSEAAAAJ&hl=e
       <>
         <div>
           {years.map((year) => (
-            <section class="py-10 border-b border-line last:border-b-0 grid md:grid-cols-12 gap-x-12 gap-y-4">
+            <section class="py-10 grid md:grid-cols-12 gap-x-12 gap-y-4">
               <h2 class="md:col-span-2 text-4xl font-medium tracking-tight text-accent tabular-nums">{year}</h2>
               <ol class="md:col-span-10 space-y-7">
                 {pubs.filter((pub) => pub.year === year).map((pub) => (
-                  <li class="max-w-[75ch]">
+                  <li class="rise max-w-[75ch]">
                     <h3 class="text-lg font-medium leading-snug">
                       {pub.doi
                         ? <a href={`https://doi.org/${pub.doi}`} target="_blank" rel="noopener noreferrer" class="hover:text-accent">{pub.title}</a>

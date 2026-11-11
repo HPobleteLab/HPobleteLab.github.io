@@ -5,13 +5,13 @@ import Layout from '../layouts/Layout.astro';
 import research from '../data/research.json';
 
 interface Paper { title: string; venue: string; doi: string; }
-interface Line { id: string; title: string; teaser: string; summary: string; image?: string; alt?: string; papers: Paper[]; }
+interface Line { light?: boolean; id: string; title: string; teaser: string; summary: string; image?: string; alt?: string; papers: Paper[]; }
 
 const lines = research as Line[];
 ---
 
 <Layout title="Research | HPoblete Lab">
-  <section class="lattice">
+  <section class="lattice panel mx-2 md:mx-4 mt-2">
     <div class="page py-16 md:py-24">
       <h1 class="text-4xl md:text-6xl font-medium tracking-tight">Research</h1>
       <p class="mt-6 text-xl md:text-2xl leading-snug text-white/75 max-w-[50ch]">
@@ -22,13 +22,13 @@ const lines = research as Line[];
 
   <div class="page">
     {lines.map((line, i) => (
-      <section id={line.id} class="scroll-mt-20 py-14 md:py-20 border-b border-line last:border-b-0 grid md:grid-cols-12 gap-x-12 gap-y-8 items-center">
+      <section id={line.id} class="scroll-mt-20 py-12 md:py-16 grid md:grid-cols-12 gap-x-12 gap-y-8 items-center">
         {line.image && (
           <img
             src={line.image}
             alt={line.alt}
             loading={i === 0 ? 'eager' : 'lazy'}
-            class:list={['w-full h-auto max-h-[36rem] object-cover md:col-span-6', i % 2 === 1 && 'md:order-2']}
+            class:list={['rise soft w-full h-auto max-h-[36rem] md:col-span-6', line.light ? 'object-contain' : 'object-cover', i % 2 === 1 && 'md:order-2']}
           />
         )}
         <div class:list={[line.image ? 'md:col-span-6' : 'md:col-span-8']}>
@@ -38,9 +38,11 @@ const lines = research as Line[];
           {line.papers.length > 0 && (
             <ul class="mt-6 space-y-3">
               {line.papers.map((paper) => (
-                <li class="pl-4 border-l-2 border-line">
-                  <a href={`https://doi.org/${paper.doi}`} target="_blank" rel="noopener noreferrer" class="hover:text-accent">{paper.title}</a>
-                  <span class="block text-muted"><em>{paper.venue}</em></span>
+                <li>
+                  <a href={`https://doi.org/${paper.doi}`} target="_blank" rel="noopener noreferrer" class="lift soft block bg-wash hover:bg-white px-5 py-3.5">
+                    {paper.title}
+                    <span class="block text-muted"><em>{paper.venue}</em></span>
+                  </a>
                 </li>
               ))}
             </ul>
