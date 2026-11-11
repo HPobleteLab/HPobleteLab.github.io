@@ -2,30 +2,30 @@
   {
     "id": "peptides-on-surfaces",
     "title": "How peptides fold and assemble on surfaces",
-    "teaser": "On graphite, cyclic glycine-X peptides fold into β-hairpins and assemble through hydrogen bonds. Sequence decides how well.",
-    "summary": "On graphite, cyclic peptides built from glycine-X repeats fold into β-hairpins that then assemble through intermolecular hydrogen bonds. Which turn sequence enforces the hairpin, and which X residue favours correct folding over misfolding or strong assembly over weak, are questions we answer with simulations of spontaneous folding and free-energy calculations: the GPGG turn enforces the hairpin best, GT repeats fold most reliably but assemble weakly, and GG repeats assemble strongly but misfold more often. We ask the same kind of question on gold and silver, where short and collagen-like peptides stabilize nanoparticles and nanosurfaces.",
+    "teaser": "Gold, silver, graphite, graphene: each surface decides which residues anchor and which structures survive adsorption.",
+    "summary": "A solid surface is not a passive support: the same peptide can keep its fold on one material and lose it on another. We simulate peptides and proteins on metals such as gold and silver, on carbon surfaces such as graphite and graphene, and on other nanomaterials, to learn which residues anchor, which secondary structure survives adsorption and when neighbouring chains order into layers. Those rules let us choose sequences that stabilize a nanoparticle, coat a surface or self-assemble on it.",
     "image": "/images/peptide-hairpins-graphite.jpg",
     "alt": "Render of cyclic peptides folded into beta-hairpins and assembled side by side on a graphite surface.",
     "papers": [
-      {
-        "title": "Sequence Dependence of Folding and Self-Assembly of Glycine-X Repeat Peptides on Graphite",
-        "venue": "Journal of Chemical Information and Modeling, 2026",
-        "doi": "10.1021/acs.jcim.6c02272"
-      },
       {
         "title": "Molecular Dynamics Study on the Influence of the CLK Motif on the Structural Stability of Collagen-Like Peptides Adsorbed on Gold Nanosurfaces",
         "venue": "ACS Omega, 2025",
         "doi": "10.1021/acsomega.4c10450"
       },
       {
-        "title": "Ultrashort Peptides as Stabilizing Agents for Colloidal Nanogold",
-        "venue": "ACS Applied Materials & Interfaces, 2025",
-        "doi": "10.1021/acsami.4c17794"
-      },
-      {
         "title": "Unveiling the Potential of RADA16-I Peptide-Coated Silver Nanoparticles for Biomedical Uses: A Computational Study",
         "venue": "Physical Chemistry Chemical Physics, 2024",
         "doi": "10.1039/d4cp03275f"
+      },
+      {
+        "title": "Sequence Dependence of Folding and Self-Assembly of Glycine-X Repeat Peptides on Graphite",
+        "venue": "Journal of Chemical Information and Modeling, 2026",
+        "doi": "10.1021/acs.jcim.6c02272"
+      },
+      {
+        "title": "Ultrashort Peptides as Stabilizing Agents for Colloidal Nanogold",
+        "venue": "ACS Applied Materials & Interfaces, 2025",
+        "doi": "10.1021/acsami.4c17794"
       }
     ]
   },
@@ -46,9 +46,9 @@
   },
   {
     "id": "ion-capture",
-    "title": "Surfaces that capture ions",
-    "teaser": "Cyclic peptides grafted to a nanosurface as selective binding sites for ionic pollutants.",
-    "summary": "A surface decorated with the right molecule can pull a specific ion out of water. We design cyclic peptides grafted to nanosurfaces as binding sites for ionic pollutants, and nanomaterials that capture and release ions selectively for mining processes and remediation. The question in every case is thermodynamic: how strongly, and how selectively, the site binds its ion in the presence of everything else in solution.",
+    "title": "Capturing anions with peptides and macrocycles",
+    "teaser": "Peptides and macrocycles as receptors for anions such as phosphate, in solution or grafted to a surface.",
+    "summary": "Binding an anion selectively in water is difficult, because the receptor has to compete with the ion's hydration shell. We design receptors for that job, cyclic peptides and other macrocycles, and compute how strongly and how selectively each one binds its target against the other ions in solution. Grafted onto a nanosurface, these receptors become materials that remove anionic pollutants such as phosphate and nitrate from water, or that capture and release ions in mining processes.",
     "image": "/images/peptides-graphite.jpg",
     "alt": "Close-up render of peptide chains lying on a flat surface with small ions above them.",
     "papers": []
