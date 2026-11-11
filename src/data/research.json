@@ -1,17 +1,66 @@
 [
   {
-    "title": "Protein-nanoparticle interactions",
-    "summary": "We investigate how proteins adsorb, unfold, and interact with various nanoparticle surfaces at the atomistic level to understand their biological impact.",
+    "title": "Peptides on metal nanostructures",
+    "summary": "Short peptides can stabilize and functionalize gold and silver nanostructures. We use molecular dynamics to study how peptide sequence controls adsorption, structural stability and hydrogen bonding at the metal surface, in collaboration with experimental groups that synthesize and test these materials.",
+    "image": "/images/coated-nanoparticle.jpg",
+    "alt": "Render of a nanoparticle with a metallic core covered by a shell of molecules.",
+    "papers": [
+      {
+        "title": "Molecular Dynamics Study on the Influence of the CLK Motif on the Structural Stability of Collagen-Like Peptides Adsorbed on Gold Nanosurfaces",
+        "venue": "ACS Omega, 2025",
+        "doi": "10.1021/acsomega.4c10450"
+      },
+      {
+        "title": "Ultrashort Peptides as Stabilizing Agents for Colloidal Nanogold",
+        "venue": "ACS Applied Materials & Interfaces, 2025",
+        "doi": "10.1021/acsami.4c17794"
+      },
+      {
+        "title": "Unveiling the Potential of RADA16-I Peptide-Coated Silver Nanoparticles for Biomedical Uses: A Computational Study",
+        "venue": "Phys. Chem. Chem. Phys., 2024",
+        "doi": "10.1039/d4cp03275f"
+      }
+    ]
+  },
+  {
+    "title": "Hybrid nanoparticles and membranes",
+    "summary": "Lipid and lipid-polymer nanoparticles are promising carriers for targeted therapy. We simulate how their composition and coating determine which membranes they recognize and how cells take them up, with current theses on predictive design of lipid coatings, uptake by macrophages and photocontrollable nanocarriers.",
+    "image": "/images/nanoparticle-membrane.webp",
+    "alt": "Render of a coated nanoparticle embedded in a layer of molecules.",
+    "papers": [
+      {
+        "title": "Lipid Composition Determines Hybrid Nanoparticle Selectivity: Beyond Membrane Mimicry in Cancer Targeting",
+        "venue": "Nano Letters, 2026",
+        "doi": "10.1021/acs.nanolett.6c00637"
+      }
+    ]
+  },
+  {
+    "title": "Functional surfaces for ion capture",
+    "summary": "Peptides and other molecules anchored to nanosurfaces can capture ions selectively. Current theses explore cyclic peptides on nanosurfaces for the environmental remediation of ionic pollutants, and nanomaterials for the selective capture and release of ions in mining processes.",
+    "image": "/images/peptides-graphite.jpg",
+    "alt": "Close-up render of peptide chains lying on a flat surface with small ions above them.",
     "papers": []
   },
   {
-    "title": "Drug delivery systems",
-    "summary": "Design and computational evaluation of novel nanocarriers for targeted drug delivery, focusing on molecular stability and release mechanisms.",
-    "papers": []
-  },
-  {
-    "title": "Advanced biomaterial design",
-    "summary": "Applying multiscale modeling techniques to develop advanced biomaterials with specific mechanical and chemical properties for tissue engineering.",
-    "papers": []
+    "title": "Membrane proteins and peptide biomaterials",
+    "summary": "With experimental collaborators we study ion channels and their regulation by lipids and toxins, antimicrobial peptides at lipid membranes, and peptide-based materials such as collagen-like peptides and hydrogels for tissue repair.",
+    "papers": [
+      {
+        "title": "Exploring a peripheral PIP2-binding site and its role in the alternative regulation of the TRP channel superfamily",
+        "venue": "Journal of General Physiology, 2025",
+        "doi": "10.1085/jgp.202413574"
+      },
+      {
+        "title": "Multipurpose On-the-Spot Peptide-Based Hydrogels for Skin, Cornea, and Heart Repair",
+        "venue": "Advanced Functional Materials, 2024",
+        "doi": "10.1002/adfm.202402564"
+      },
+      {
+        "title": "Self-Organization Dynamics of Collagen-like Peptides Crosslinking Is Driven by Rose-Bengal-Mediated Electrostatic Bridges",
+        "venue": "Pharmaceutics, 2022",
+        "doi": "10.3390/pharmaceutics14061148"
+      }
+    ]
   }
 ]

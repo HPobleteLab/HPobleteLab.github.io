@@ -1,8 +1,9 @@
 {
   "name": "Luis Gonzalo Espinoza Arcos",
-  "role": "PhD",
+  "role": "Postdoctoral Researcher",
   "category": "Postdoc",
   "email": "lespinoza@utalca.cl",
-  "bio": "Luis Gonzalo is currently pursuing his PhD, focusing his research on theoretical biophysics and the interaction of complex biomolecules.",
-  "order": 3
+  "bio": "Gonzalo completed his PhD in the Modeling of Chemical and Biological Systems program at Universidad de Talca (2021–2026), studying how hybrid nanoparticles bind selectively to their targets. He is first author of the group's 2026 Nano Letters paper on lipid composition and nanoparticle selectivity.",
+  "order": 3,
+  "image": "/images/team/lgespinoza_avatar-96x96.webp"
 }

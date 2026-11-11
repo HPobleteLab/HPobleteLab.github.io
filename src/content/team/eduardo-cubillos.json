@@ -2,6 +2,7 @@
   "name": "Eduardo Cubillos Llantén",
   "role": "PhD Student",
   "category": "PhD Student",
-  "bio": "Eduardo's doctoral research centers on the computational design of novel bio-nanomaterials and free energy calculations.",
-  "order": 4
+  "bio": "PhD student since 2023 and ANID fellow. Thesis: nanosurfaces conjugated with cyclic peptides for the environmental remediation of ionic pollutants.",
+  "order": 4,
+  "image": "/images/team/ecubillos_avatar-96x96.webp"
 }

@@ -23,31 +23,31 @@ const SCHOLAR_URL = 'https://scholar.google.com/citations?user=feuxRSEAAAAJ&hl=e
 ---
 
 <Layout title="Publications | HPoblete Lab">
-  <div class="page pt-12 md:pt-16">
-    <h1 class="text-4xl md:text-5xl font-medium tracking-tight">Publications</h1>
+  <section class="bg-wash">
+    <div class="page py-14 md:py-20 flex flex-wrap items-end justify-between gap-6">
+      <h1 class="text-4xl md:text-6xl font-medium tracking-tight">Publications</h1>
+      <a href={SCHOLAR_URL} target="_blank" rel="noopener noreferrer" class="btn btn-quiet bg-white">Google Scholar profile</a>
+    </div>
+  </section>
 
+  <div class="page">
     {pubs.length === 0 ? (
-      <p class="mt-6 text-lg md:text-xl leading-relaxed text-muted max-w-[58ch]">
+      <p class="py-14 text-lg md:text-xl leading-relaxed text-muted max-w-[58ch]">
         The list is being updated. The full record is on
         <a href={SCHOLAR_URL} target="_blank" rel="noopener noreferrer" class="link">Google Scholar</a>.
       </p>
     ) : (
       <>
-        <p class="mt-6 text-lg text-muted">
-          {pubs.length} publications, also listed on
-          <a href={SCHOLAR_URL} target="_blank" rel="noopener noreferrer" class="link">Google Scholar</a>.
-        </p>
-
-        <div class="mt-12 border-t border-line">
+        <div>
           {years.map((year) => (
-            <section class="py-8 border-b border-line grid md:grid-cols-12 gap-x-12 gap-y-4">
-              <h2 class="md:col-span-2 text-3xl font-medium tracking-tight text-muted/60 tabular-nums">{year}</h2>
+            <section class="py-10 border-b border-line last:border-b-0 grid md:grid-cols-12 gap-x-12 gap-y-4">
+              <h2 class="md:col-span-2 text-4xl font-medium tracking-tight text-accent tabular-nums">{year}</h2>
               <ol class="md:col-span-10 space-y-7">
                 {pubs.filter((pub) => pub.year === year).map((pub) => (
                   <li class="max-w-[75ch]">
                     <h3 class="text-lg font-medium leading-snug">
                       {pub.doi
-                        ? <a href={`https://doi.org/${pub.doi}`} target="_blank" rel="noopener noreferrer" class="hover:underline">{pub.title}</a>
+                        ? <a href={`https://doi.org/${pub.doi}`} target="_blank" rel="noopener noreferrer" class="hover:text-accent">{pub.title}</a>
                         : pub.title}
                     </h3>
                     <p class="mt-1 text-muted leading-relaxed" set:html={highlightAuthor(pub.authors.join(', '))} />

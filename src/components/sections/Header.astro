@@ -10,15 +10,12 @@ const links = [
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 
-<header class="bg-white">
-  <div class="page flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2 py-5">
-    <a href="/" class="text-lg font-semibold tracking-tight">
-      HPoblete Lab
-      <span class="hidden sm:inline font-normal text-muted"> / Bio-nanomaterial Simulations Group</span>
-    </a>
+<header class="sticky top-0 z-40 bg-night text-white">
+  <div class="page flex flex-wrap items-center justify-between gap-x-8 gap-y-1 py-4">
+    <a href="/" class="text-lg font-semibold tracking-tight">HPoblete Lab</a>
 
     <nav aria-label="Main">
-      <ul class="flex gap-6 sm:gap-8 text-[0.95rem]">
+      <ul class="flex gap-1 text-[0.95rem]">
         {links.map(({ href, label }) => {
           const active = currentPath === href;
           return (
@@ -27,8 +24,8 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
                 href={href}
                 aria-current={active ? 'page' : undefined}
                 class:list={[
-                  'pb-1 border-b-2 transition-colors',
-                  active ? 'border-accent text-ink font-medium' : 'border-transparent text-muted hover:text-ink',
+                  'block px-3 py-1.5 rounded-full transition-colors',
+                  active ? 'bg-white/12 text-white' : 'text-white/70 hover:text-white hover:bg-white/8',
                 ]}
               >{label}</a>
             </li>

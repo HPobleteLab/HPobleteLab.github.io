@@ -1,7 +1,8 @@
 {
-  "name": "Matias Rojas Tapia",
+  "name": "Matías Rojas Tapia",
   "role": "PhD Student",
   "category": "PhD Student",
-  "bio": "Matias is investigating the mechanism of protein adsorption on metallic nanosurfaces for potential medical applications.",
-  "order": 6
+  "bio": "PhD student since 2023 and ANID fellow. Thesis: optimization of targeted therapy in colorectal cancer using photocontrollable nanocarriers.",
+  "order": 6,
+  "image": "/images/team/mrojas_avatar-96x96.webp"
 }

@@ -4,46 +4,49 @@
 import Layout from '../layouts/Layout.astro';
 import research from '../data/research.json';
 
-interface Paper { title: string; doi: string; }
-interface Line { title: string; summary: string; papers: Paper[]; }
+interface Paper { title: string; venue: string; doi: string; }
+interface Line { title: string; summary: string; image?: string; alt?: string; papers: Paper[]; }
 
 const lines = research as Line[];
 ---
 
 <Layout title="Research | HPoblete Lab">
-  <div class="page pt-12 md:pt-16">
-    <h1 class="text-4xl md:text-5xl font-medium tracking-tight">Research</h1>
-    <p class="mt-6 text-lg md:text-xl leading-relaxed text-muted max-w-[58ch]">
-      We use state-of-the-art computational tools to simulate and understand the interface between biological molecules and engineered nanomaterials.
-    </p>
-
-    <figure class="mt-12 md:mt-16">
-      <img
-        src="/images/nanoparticle-membrane.webp"
-        width="1800"
-        height="1002"
-        alt="Render of a coated nanoparticle embedded in a layer of molecules."
-        class="w-full h-auto max-w-5xl mx-auto"
-      />
-      {/* TODO: caption for this render (system, method, reference). */}
-    </figure>
-
-    <div class="mt-12 md:mt-16 border-t border-line">
-      {lines.map((line) => (
-        <section class="py-10 border-b border-line grid md:grid-cols-12 gap-x-12 gap-y-4">
-          <h2 class="md:col-span-4 text-2xl font-medium tracking-tight">{line.title}</h2>
-          <div class="md:col-span-8">
-            <p class="text-lg leading-relaxed max-w-[62ch]">{line.summary}</p>
-            {line.papers.length > 0 && (
-              <ul class="mt-6 space-y-2 text-muted">
-                {line.papers.map((paper) => (
-                  <li><a href={`https://doi.org/${paper.doi}`} target="_blank" rel="noopener noreferrer" class="link">{paper.title}</a></li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </section>
-      ))}
+  <section class="bg-wash">
+    <div class="page py-14 md:py-20">
+      <h1 class="text-4xl md:text-6xl font-medium tracking-tight">Research</h1>
+      <p class="mt-6 text-xl md:text-2xl leading-snug text-muted max-w-[46ch]">
+        We use molecular simulation to understand the interface between biological molecules and engineered nanomaterials.
+      </p>
     </div>
+  </section>
+
+  <div class="page">
+    {lines.map((line, i) => (
+      <section class="py-14 md:py-20 border-b border-line last:border-b-0 grid md:grid-cols-12 gap-x-12 gap-y-8 items-center">
+        {line.image && (
+          <img
+            src={line.image}
+            alt={line.alt}
+            loading={i === 0 ? 'eager' : 'lazy'}
+            class:list={['w-full h-auto md:col-span-6', i % 2 === 1 && 'md:order-2']}
+          />
+        )}
+        <div class:list={[line.image ? 'md:col-span-6' : 'md:col-span-8']}>
+          <h2 class="h-section">{line.title}</h2>
+          <p class="mt-4 text-lg leading-relaxed max-w-[60ch]">{line.summary}</p>
+
+          {line.papers.length > 0 && (
+            <ul class="mt-6 space-y-3">
+              {line.papers.map((paper) => (
+                <li class="pl-4 border-l-2 border-line">
+                  <a href={`https://doi.org/${paper.doi}`} target="_blank" rel="noopener noreferrer" class="hover:text-accent">{paper.title}</a>
+                  <span class="block text-muted"><em>{paper.venue}</em></span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </section>
+    ))}
   </div>
 </Layout>

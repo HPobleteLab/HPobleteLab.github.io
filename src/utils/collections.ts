@@ -21,14 +21,8 @@ export function groupTeamByCategory(team: Member[]) {
   };
 }
 
-// "Eduardo Cubillos Llantén" -> "EC"
-export const initials = (name: string) =>
-  name
-    .replace(/^Dr\.?\s+/i, '')
-    .split(/\s+/)
-    .slice(0, 2)
-    .map((part) => part[0]?.toUpperCase() ?? '')
-    .join('');
+// Shown for members who have no photo yet.
+export const NO_IMAGE = '/images/team/no-image.jpg';
 
 // Contact and profile links for a member, in display order.
 export const memberLinks = (data: Member['data']) =>

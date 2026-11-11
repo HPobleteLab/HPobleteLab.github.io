@@ -2,6 +2,12 @@
 // src/components/sections/Footer.astro
 const year = new Date().getFullYear();
 
+const pages = [
+  { label: 'Research', href: '/research' },
+  { label: 'Publications', href: '/publications' },
+  { label: 'Team', href: '/team' },
+];
+
 const social = [
   { label: 'GitHub', href: 'https://github.com/HPobleteLab' },
   { label: 'X', href: 'https://x.com/NBMgUtalca' },
@@ -9,20 +15,28 @@ const social = [
 ];
 ---
 
-<footer class="mt-24 border-t border-line">
-  <div class="page py-10 flex flex-col md:flex-row md:items-baseline md:justify-between gap-6 text-sm text-muted">
-    <p>
-      <span class="text-ink font-medium">HPoblete Lab</span><br />
-      Bio-nanomaterial Simulations Group<br />
-      Universidad de Talca, Chile
-    </p>
+<footer class="bg-night text-white/70">
+  <div class="page py-14 grid gap-10 md:grid-cols-12">
+    <div class="md:col-span-6">
+      <p class="text-xl font-semibold tracking-tight text-white">HPoblete Lab</p>
+      <p class="mt-2 leading-relaxed">
+        Bio-nanomaterial Simulations Group<br />
+        Center for Bioinformatics, Simulation and Modeling (CBSM)<br />
+        Universidad de Talca, Chile
+      </p>
+    </div>
 
-    <ul class="flex gap-6">
-      {social.map(({ label, href }) => (
-        <li><a href={href} target="_blank" rel="noopener noreferrer" class="hover:text-ink underline">{label}</a></li>
+    <ul class="md:col-span-3 space-y-2">
+      {pages.map(({ label, href }) => (
+        <li><a href={href} class="hover:text-white">{label}</a></li>
       ))}
     </ul>
 
-    <p>&copy; {year} HPoblete Lab</p>
+    <ul class="md:col-span-3 space-y-2">
+      {social.map(({ label, href }) => (
+        <li><a href={href} target="_blank" rel="noopener noreferrer" class="hover:text-white">{label}</a></li>
+      ))}
+    </ul>
   </div>
+  <div class="page pb-8 text-sm text-white/45">&copy; {year} HPoblete Lab</div>
 </footer>

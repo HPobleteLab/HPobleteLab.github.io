@@ -1,7 +1,8 @@
 {
-  "name": "Raul Sepulveda",
+  "name": "Raúl Sepúlveda",
   "role": "PhD Student",
   "category": "PhD Student",
-  "bio": "Raul's thesis work involves large-scale simulations to understand soft material behaviors at the atomic level.",
-  "order": 7
-}   
+  "bio": "PhD student since 2023. Thesis: modulation of the internalization of lipid-polymer nanoparticles in macrophages.",
+  "order": 7,
+  "image": "/images/team/rsepulveda_avatar-96x96.webp"
+}

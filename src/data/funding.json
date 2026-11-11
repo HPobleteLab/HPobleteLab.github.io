@@ -1,26 +1,41 @@
-[
-  {
-    "years": "2018 – 2021",
-    "grant": "Fondecyt Regular 2018",
-    "role": "Co-Investigator (PI: Jans Alzate-Morales)",
-    "project": "Estimating residence time in protein-ligand complexes: New computational tools for understanding pharmacological effects..."
-  },
-  {
-    "years": "2017 – 2021",
-    "grant": "Fondecyt Regular 2017",
-    "role": "Principal Investigator",
-    "project": "New Insights into conformational equilibria of proteins absorbed to nanometal surfaces using molecular dynamics simulations..."
-  },
-  {
-    "years": "2017 – 2021",
-    "grant": "Millennium Nucleus 2017",
-    "role": "Young Investigator",
-    "project": "Millennium Nucleus of Ion Channels-Associated Diseases (MiNICAD)."
-  },
-  {
-    "years": "2017 – 2020",
-    "grant": "Talca University Research Support",
-    "role": "Grant Recipient",
-    "project": "Desarrollo Nucleo Cientifico Multidiciplinario"
-  }
-]
+{
+  "current": [
+    {
+      "grant": "Fondecyt Regular 2025",
+      "number": "1251288",
+      "agency": "ANID, Chile",
+      "role": "Principal Investigator: Horacio Poblete"
+    }
+  ],
+  "past": [
+    {
+      "years": "2021",
+      "grant": "Fondecyt Regular 2021, No. 1211143",
+      "role": "Principal Investigator"
+    },
+    {
+      "years": "2018 – 2021",
+      "grant": "Fondecyt Regular 2018",
+      "role": "Co-Investigator (PI: Jans Alzate-Morales)",
+      "project": "Estimating residence time in protein-ligand complexes: New computational tools for understanding pharmacological effects..."
+    },
+    {
+      "years": "2017 – 2021",
+      "grant": "Fondecyt Regular 2017",
+      "role": "Principal Investigator",
+      "project": "New Insights into conformational equilibria of proteins absorbed to nanometal surfaces using molecular dynamics simulations..."
+    },
+    {
+      "years": "2017 – 2021",
+      "grant": "Millennium Nucleus 2017",
+      "role": "Young Investigator",
+      "project": "Millennium Nucleus of Ion Channels-Associated Diseases (MiNICAD)."
+    },
+    {
+      "years": "2017 – 2020",
+      "grant": "Talca University Research Support",
+      "role": "Grant Recipient",
+      "project": "Desarrollo Nucleo Cientifico Multidiciplinario"
+    }
+  ]
+}

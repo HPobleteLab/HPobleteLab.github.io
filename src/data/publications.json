@@ -1,1 +1,191 @@
-[]
+[
+  {
+    "id": "https://doi.org/10.1021/acs.nanolett.6c00637",
+    "title": "Lipid Composition Determines Hybrid Nanoparticle Selectivity: Beyond Membrane Mimicry in Cancer Targeting",
+    "authors": [
+      "L. Gonzalo Espinoza-Arcos",
+      "Matías Valdés-Peña",
+      "Juan J. de Pablo",
+      "Cristian Vilos",
+      "Ricardo A. Zamora",
+      "Ricardo Alessandri",
+      "Horacio Poblete"
+    ],
+    "journal": "Nano Letters",
+    "year": 2026,
+    "date": null,
+    "volume": null,
+    "pages": null,
+    "doi": "10.1021/acs.nanolett.6c00637",
+    "type": "article"
+  },
+  {
+    "id": "https://doi.org/10.1085/jgp.202413574",
+    "title": "Exploring a peripheral PIP2-binding site and its role in the alternative regulation of the TRP channel superfamily",
+    "authors": [
+      "L. Gonzalo Espinoza-Arcos",
+      "Mariela González-Avendaño",
+      "Matias Zuñiga-Bustos",
+      "Ricardo A. Zamora",
+      "Ariela Vergara-Jaque",
+      "Horacio Poblete"
+    ],
+    "journal": "Journal of General Physiology",
+    "year": 2025,
+    "date": null,
+    "volume": null,
+    "pages": null,
+    "doi": "10.1085/jgp.202413574",
+    "type": "article"
+  },
+  {
+    "id": "https://doi.org/10.1085/jgp.202413590",
+    "title": "Charybdotoxin binding to Shaker K+ channels is temperature sensitive in high external K+ but not in high external Na+",
+    "authors": [
+      "Nieves Navarro-Quezada",
+      "Francisca Salas-Sepúlveda",
+      "Horacio Poblete",
+      "David Naranjo"
+    ],
+    "journal": "Journal of General Physiology",
+    "year": 2025,
+    "date": null,
+    "volume": null,
+    "pages": null,
+    "doi": "10.1085/jgp.202413590",
+    "type": "article"
+  },
+  {
+    "id": "https://doi.org/10.1021/acsami.4c17794",
+    "title": "Ultrashort Peptides as Stabilizing Agents for Colloidal Nanogold",
+    "authors": [
+      "Juan David Figueroa",
+      "Sergio D. Garcia Schejtman",
+      "Ryan Tu",
+      "Marcelo Muñoz",
+      "Francisca Salas-Sepúlveda",
+      "Horacio Poblete",
+      "Marc-André Langlois",
+      "Erik J. Suuronen",
+      "Emilio I. Alarcon"
+    ],
+    "journal": "ACS Applied Materials & Interfaces",
+    "year": 2025,
+    "date": null,
+    "volume": null,
+    "pages": null,
+    "doi": "10.1021/acsami.4c17794",
+    "type": "article"
+  },
+  {
+    "id": "https://doi.org/10.1021/acsomega.4c10450",
+    "title": "Molecular Dynamics Study on the Influence of the CLK Motif on the Structural Stability of Collagen-Like Peptides Adsorbed on Gold Nanosurfaces",
+    "authors": [
+      "Constanza Galaz-Araya",
+      "Pablo Galaz-Davison",
+      "Diego Cortés-Arriagada",
+      "Ricardo A. Zamora",
+      "Horacio Poblete"
+    ],
+    "journal": "ACS Omega",
+    "year": 2025,
+    "date": null,
+    "volume": "10",
+    "pages": "10366-10374",
+    "doi": "10.1021/acsomega.4c10450",
+    "type": "article"
+  },
+  {
+    "id": "https://doi.org/10.1039/d4cp03275f",
+    "title": "Unveiling the Potential of RADA16-I Peptide-Coated Silver Nanoparticles for Biomedical Uses: A Computational Study",
+    "authors": [
+      "Matias Zuñiga-Bustos",
+      "Constanza Galaz-Araya",
+      "Horacio Poblete"
+    ],
+    "journal": "Physical Chemistry Chemical Physics",
+    "year": 2024,
+    "date": null,
+    "volume": null,
+    "pages": null,
+    "doi": "10.1039/d4cp03275f",
+    "type": "article"
+  },
+  {
+    "id": "https://doi.org/10.1002/adfm.202402564",
+    "title": "Multipurpose On-the-Spot Peptide-Based Hydrogels for Skin, Cornea, and Heart Repair",
+    "authors": [
+      "Alex Ross",
+      "Xixi Guo",
+      "German A. Mercado Salazar",
+      "Sergio David Garcia Schejtman",
+      "Jinane El-Hage",
+      "Maxime Comtois-Bona",
+      "Aidan Macadam",
+      "Irene Guzman-Soto",
+      "Hiroki Takaya",
+      "Kevin Hu",
+      "Bryan Liu",
+      "Ryan Tu",
+      "Bilal Siddiqi",
+      "Erica Anderson",
+      "Marcelo Muñoz",
+      "Patricio Briones-Rebolledo",
+      "Tianqin Ning",
+      "May Griffith",
+      "Benjamin Rotsein",
+      "Horacio Poblete",
+      "Jianyu Li",
+      "Marc Ruel",
+      "Erik J. Suuronen",
+      "Emilio I. Alarcon"
+    ],
+    "journal": "Advanced Functional Materials",
+    "year": 2024,
+    "date": null,
+    "volume": "34",
+    "pages": "2402564",
+    "doi": "10.1002/adfm.202402564",
+    "type": "article"
+  },
+  {
+    "id": "https://doi.org/10.1016/j.dyepig.2023.111368",
+    "title": "Time-resolved fluorescence and anisotropy-sensitive 1,2-dimyristoyl-sn-glycero-3-(7-aminocoumarin) phosphoetanolamide probe for studying membrane lipid domains",
+    "authors": [
+      "Daniel Zúñiga-Núñez",
+      "Francisco Mura",
+      "Nory Mariño-Ocampo",
+      "Patricio Briones-Rebolledo",
+      "Horacio Poblete",
+      "Jean-Maurice Mallet",
+      "Denis Fuentealba",
+      "Alexis Aspée"
+    ],
+    "journal": "Dyes and Pigments",
+    "year": 2023,
+    "date": null,
+    "volume": "217",
+    "pages": "111368",
+    "doi": "10.1016/j.dyepig.2023.111368",
+    "type": "article"
+  },
+  {
+    "id": "https://doi.org/10.3390/pharmaceutics14061148",
+    "title": "Self-Organization Dynamics of Collagen-like Peptides Crosslinking Is Driven by Rose-Bengal-Mediated Electrostatic Bridges",
+    "authors": [
+      "Roberto Rosales-Rojas",
+      "Matías Zuñiga-Bustos",
+      "Francisca Salas-Sepúlveda",
+      "Constanza Galaz-Araya",
+      "Ricardo A. Zamora",
+      "Horacio Poblete"
+    ],
+    "journal": "Pharmaceutics",
+    "year": 2022,
+    "date": null,
+    "volume": "14",
+    "pages": "1148",
+    "doi": "10.3390/pharmaceutics14061148",
+    "type": "article"
+  }
+]

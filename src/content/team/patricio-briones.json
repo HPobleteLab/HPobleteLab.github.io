@@ -2,6 +2,7 @@
   "name": "Patricio Briones Rebolledo",
   "role": "PhD Student",
   "category": "PhD Student",
-  "bio": "Patricio focuses on the molecular dynamics of ion channels and membrane dynamics using advanced simulation techniques.",
-  "order": 5
+  "bio": "PhD student since 2023 and ANID fellow. Thesis: the synergy between hydrophobic and cationic residues in antimicrobial peptides and their interaction with lipid membranes.",
+  "order": 5,
+  "image": "/images/team/pbriones_avatar-96x96.webp"
 }

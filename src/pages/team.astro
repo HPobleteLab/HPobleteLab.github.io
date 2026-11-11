@@ -18,44 +18,46 @@ const groups = [
 ---
 
 <Layout title="Team | HPoblete Lab">
-  <div class="page pt-12 md:pt-16">
-    <h1 class="text-4xl md:text-5xl font-medium tracking-tight">Team</h1>
-
-    {pi && (
-      <section class="mt-12 md:mt-16 grid md:grid-cols-12 gap-x-12 gap-y-8 items-start">
-        {pi.data.image && (
-          <img src={pi.data.image} alt={pi.data.name} class="md:col-span-4 w-full max-w-sm aspect-[4/5] object-cover bg-wash" />
-        )}
+  {pi && (
+    <section class="bg-wash">
+      <div class="page py-14 md:py-20 grid md:grid-cols-12 gap-x-12 gap-y-8 items-center">
         <div class="md:col-span-8">
-          <h2 class="text-3xl font-medium tracking-tight">{pi.data.name}</h2>
-          <p class="mt-1 text-lg text-muted">Principal Investigator, {pi.data.role}</p>
+          <h1 class="text-muted">Team</h1>
+          <h2 class="mt-2 text-4xl md:text-6xl font-medium tracking-tight">{pi.data.name}</h2>
+          <p class="mt-3 text-xl text-accent">Principal Investigator</p>
           {pi.data.bio && <p class="mt-6 text-lg leading-relaxed max-w-[62ch]">{pi.data.bio}</p>}
-          <p class="mt-6 flex flex-wrap gap-x-6 gap-y-1">
+          <p class="mt-6 flex flex-wrap gap-3">
             {memberLinks(pi.data).map(({ label, href }) => (
-              <a href={href} target={href.startsWith('mailto:') ? undefined : '_blank'} rel="noopener noreferrer" class="link">{label}</a>
+              <a href={href} target={href.startsWith('mailto:') ? undefined : '_blank'} rel="noopener noreferrer" class="btn btn-quiet bg-white">{label}</a>
             ))}
           </p>
         </div>
-      </section>
-    )}
+        {pi.data.image && (
+          <img src={pi.data.image} alt={pi.data.name} class="md:col-span-4 w-full max-w-xs md:max-w-none aspect-[4/5] object-cover" />
+        )}
+      </div>
+    </section>
+  )}
 
+  <div class="page">
     {groups.map((group) => (
-      <section class="mt-20">
-        <h2 class="text-2xl font-medium tracking-tight pb-4 border-b border-line">{group.title}</h2>
-        <div class="mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-12">
+      <section class="py-14 border-b border-line">
+        <h2 class="h-section">{group.title}</h2>
+        <div class="mt-10 grid gap-x-12 gap-y-10 md:grid-cols-2">
           {group.members.map((member) => <TeamMember member={member} />)}
         </div>
       </section>
     ))}
 
     {alumni.length > 0 && (
-      <section class="mt-20">
-        <h2 class="text-2xl font-medium tracking-tight pb-4 border-b border-line">Former members</h2>
-        <ul>
+      <section class="py-14">
+        <h2 class="h-section">Former members</h2>
+        <ul class="mt-8 grid gap-x-12 gap-y-6 md:grid-cols-2">
           {alumni.map((member) => (
-            <li class="py-3 border-b border-line flex flex-wrap justify-between gap-x-8">
-              <span class="font-medium">{member.data.name}</span>
-              <span class="text-muted">{member.data.role}</span>
+            <li>
+              <p class="font-medium text-lg">{member.data.name}</p>
+              <p class="text-muted">{member.data.role}</p>
+              {member.data.bio && <p class="mt-1 text-muted leading-relaxed">{member.data.bio}</p>}
             </li>
           ))}
         </ul>

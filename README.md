@@ -43,13 +43,15 @@ Create `src/content/team/first-last.json`:
 }
 ```
 
-`category` must be one of `Principal Investigator`, `Postdoc`, `Research Assistant`, `PhD Student`, `Undergraduate Student`, `Alumni`, and decides the section the member appears in. `order` sorts members inside their section. Every field other than `name`, `role` and `category` is optional; a member without `image` is shown with initials. Photos go in `public/images/team/`, ideally square and under 300 kB.
+`category` must be one of `Principal Investigator`, `Postdoc`, `Research Assistant`, `PhD Student`, `Undergraduate Student`, `Alumni`, and decides the section the member appears in. `order` sorts members inside their section. Every field other than `name`, `role` and `category` is optional; a member without `image` gets the placeholder picture. Photos go in `public/images/team/`, square and at least 200 px wide; they are displayed in black and white automatically (the PI photo stays in colour).
 
 When someone leaves the group, change `category` to `Alumni` and `role` to something like `Former PhD Student (2021-2025)`.
 
 ## Edit research lines and funding
 
-Both are plain lists: `src/data/research.json` (title, summary and an optional `papers` array of `{ "title", "doi" }`) and `src/data/funding.json`.
+Research lines live in `src/data/research.json`: `title`, `summary`, an optional `image` with its `alt` text, and a `papers` array of `{ "title", "venue", "doi" }`. Lines with an image are featured on the home page.
+
+Funding lives in `src/data/funding.json`, split into `current` (shown on the home page) and `past` (collapsed under "Past funding"). When a grant ends, move it from one list to the other.
 
 ## Add an image
 
