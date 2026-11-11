@@ -32,7 +32,7 @@
   {
     "id": "nanoparticles-and-membranes",
     "title": "What makes a nanoparticle choose a membrane",
-    "teaser": "Overcoming the hydration shell to bind anions in water is a major challenge. We computationally design cyclic peptides and macrocycles for this task, transforming them into functionalized nanomaterials capable of removing water pollutants or capturing specific ions for mining.",
+    "teaser": "The lipid coat of a hybrid nanoparticle sets which membranes it binds, and mimicking the target is not the whole story..",
     "summary": "Wrapping a polymer core in lipids changes which cells a nanoparticle binds. We model hybrid lipid-polymer nanoparticles together with their target membranes to find what sets that selectivity; our recent work shows that lipid composition determines it, beyond simply mimicking the target membrane. Current theses extend this to the predictive design of lipid coatings, uptake by macrophages and photocontrollable carriers for colorectal cancer.",
     "image": "/images/nanoparticle-membrane-scene.jpg",
     "alt": "Render of a nanoparticle embedded in a lipid membrane.",
