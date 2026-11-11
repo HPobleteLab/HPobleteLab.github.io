@@ -23,6 +23,10 @@ const OUT = fileURLToPath(new URL('../src/data/publications.json', import.meta.u
 const EXCLUDE = fileURLToPath(new URL('../src/data/publications-exclude.json', import.meta.url));
 const EXTRA = fileURLToPath(new URL('../src/data/publications-extra.json', import.meta.url));
 
+// OpenAlex also indexes things that are not papers (author responses to reviewers,
+// datasets, errata, meeting abstracts, lists of contributors). Only these types are kept.
+const KEEP_TYPES = new Set(['article', 'review', 'book-chapter', 'preprint']);
+
 const stripTags = (text) => text.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
 
 async function fetchAllWorks() {
@@ -83,7 +87,9 @@ const extraDois = JSON.parse(await readFile(EXTRA, 'utf8'));
 const seen = new Set();
 const publications = [...(await fetchAllWorks()), ...(await fetchByDoi(extraDois))]
   .map(normalize)
-  .filter((pub) => pub.title && pub.year && !isExcluded(pub))
+  // Records without a DOI are repository copies or translated duplicates of a paper
+  // that is already listed under its DOI.
+  .filter((pub) => pub.title && pub.year && pub.doi && KEEP_TYPES.has(pub.type) && !isExcluded(pub))
   .filter((pub) => {
     // The same paper can appear twice (e.g. preprint + journal version with one DOI).
     const key = pub.doi?.toLowerCase() ?? pub.title.toLowerCase();
