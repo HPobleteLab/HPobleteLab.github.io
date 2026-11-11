@@ -67,7 +67,7 @@ npm run update-pubs
 
 Commit the updated file. The deploy workflow also refreshes the list on every run and once a week, falling back to the committed file if OpenAlex is unreachable.
 
-To hide an entry (a duplicate, an erratum, a wrong author match), add its DOI or OpenAlex id to `src/data/publications-exclude.json` and run the command again.
+To hide an entry (a duplicate, an erratum, a wrong author match), add its DOI or OpenAlex id to `src/data/publications-exclude.json` and run the command again. To force a paper in, add its DOI to `src/data/publications-extra.json`.
 
 Author names are highlighted by the patterns in `src/utils/textFormatters.ts`; add new members there.
 
