@@ -9,10 +9,10 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "update-pubs": "node scripts/update-publications.mjs"
   },
   "dependencies": {
-    "@astrojs/mdx": "^5.0.4",
     "@tailwindcss/vite": "^4.2.4",
     "astro": "^6.2.1",
     "tailwindcss": "^4.2.4"

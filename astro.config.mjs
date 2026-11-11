@@ -1,14 +1,12 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
-import mdx from '@astrojs/mdx';
 
-// https://astro.build/config
+// The site is served from the root of the organization page.
+// If the repository is ever renamed to something other than
+// <org>.github.io, add `base: '/<repo-name>'` and prefix internal links.
 export default defineConfig({
-  site: 'https://alessandri-group.github.io',
+  site: 'https://hpobletelab.github.io',
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [
-    mdx(),
-  ],
 });
