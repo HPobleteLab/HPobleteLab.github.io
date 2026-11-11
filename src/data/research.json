@@ -1,10 +1,17 @@
 [
   {
-    "title": "Peptides on metal nanostructures",
-    "summary": "Short peptides can stabilize and functionalize gold and silver nanostructures. We use molecular dynamics to study how peptide sequence controls adsorption, structural stability and hydrogen bonding at the metal surface, in collaboration with experimental groups that synthesize and test these materials.",
+    "id": "peptides-on-surfaces",
+    "title": "How peptides fold and assemble on surfaces",
+    "teaser": "Sequence decides which residues anchor, which structure survives adsorption and whether neighbours order into layers.",
+    "summary": "When a peptide meets a solid surface, its sequence decides almost everything: which side chains anchor, which secondary structure survives adsorption, and whether neighbouring chains order into layers. We compute conformational ensembles and free energies of peptides on graphite, gold and silver to learn those rules, and use them to choose sequences that fold, assemble or stabilize a nanoparticle on a given material.",
     "image": "/images/coated-nanoparticle.jpg",
     "alt": "Render of a nanoparticle with a metallic core covered by a shell of molecules.",
     "papers": [
+      {
+        "title": "Sequence Dependence of Folding and Self-Assembly of Glycine-X Repeat Peptides on Graphite",
+        "venue": "Journal of Chemical Information and Modeling, 2026",
+        "doi": "10.1021/acs.jcim.6c02272"
+      },
       {
         "title": "Molecular Dynamics Study on the Influence of the CLK Motif on the Structural Stability of Collagen-Like Peptides Adsorbed on Gold Nanosurfaces",
         "venue": "ACS Omega, 2025",
@@ -17,14 +24,16 @@
       },
       {
         "title": "Unveiling the Potential of RADA16-I Peptide-Coated Silver Nanoparticles for Biomedical Uses: A Computational Study",
-        "venue": "Phys. Chem. Chem. Phys., 2024",
+        "venue": "Physical Chemistry Chemical Physics, 2024",
         "doi": "10.1039/d4cp03275f"
       }
     ]
   },
   {
-    "title": "Hybrid nanoparticles and membranes",
-    "summary": "Lipid and lipid-polymer nanoparticles are promising carriers for targeted therapy. We simulate how their composition and coating determine which membranes they recognize and how cells take them up, with current theses on predictive design of lipid coatings, uptake by macrophages and photocontrollable nanocarriers.",
+    "id": "nanoparticles-and-membranes",
+    "title": "What makes a nanoparticle choose a membrane",
+    "teaser": "The lipid coat of a hybrid nanoparticle sets which membranes it binds, and mimicking the target is not the whole story.",
+    "summary": "Wrapping a polymer core in lipids changes which cells a nanoparticle binds. We model hybrid lipid-polymer nanoparticles together with their target membranes to find what sets that selectivity; our recent work shows that lipid composition determines it, beyond simply mimicking the target membrane. Current theses extend this to the predictive design of lipid coatings, uptake by macrophages and photocontrollable carriers for colorectal cancer.",
     "image": "/images/nanoparticle-membrane.webp",
     "alt": "Render of a coated nanoparticle embedded in a layer of molecules.",
     "papers": [
@@ -36,20 +45,29 @@
     ]
   },
   {
-    "title": "Functional surfaces for ion capture",
-    "summary": "Peptides and other molecules anchored to nanosurfaces can capture ions selectively. Current theses explore cyclic peptides on nanosurfaces for the environmental remediation of ionic pollutants, and nanomaterials for the selective capture and release of ions in mining processes.",
+    "id": "ion-capture",
+    "title": "Surfaces that capture ions",
+    "teaser": "Cyclic peptides grafted to a nanosurface as selective binding sites for ionic pollutants.",
+    "summary": "A surface decorated with the right molecule can pull a specific ion out of water. We design cyclic peptides grafted to nanosurfaces as binding sites for ionic pollutants, and nanomaterials that capture and release ions selectively for mining processes and remediation. The question in every case is thermodynamic: how strongly, and how selectively, the site binds its ion in the presence of everything else in solution.",
     "image": "/images/peptides-graphite.jpg",
     "alt": "Close-up render of peptide chains lying on a flat surface with small ions above them.",
     "papers": []
   },
   {
-    "title": "Membrane proteins and peptide biomaterials",
-    "summary": "With experimental collaborators we study ion channels and their regulation by lipids and toxins, antimicrobial peptides at lipid membranes, and peptide-based materials such as collagen-like peptides and hydrogels for tissue repair.",
+    "id": "membrane-proteins",
+    "title": "Ion channels, lipids and peptide materials",
+    "teaser": "Simulations alongside experiments on channel regulation, membrane-active peptides and peptide hydrogels.",
+    "summary": "Much of our work runs alongside experimental groups. Together we have described a peripheral PIP2-binding site that regulates TRP channels, the temperature dependence of charybdotoxin binding to Shaker K+ channels, and the electrostatic bridges that drive crosslinking of collagen-like peptides, and we have contributed simulations to peptide hydrogels for tissue repair. A current thesis studies how hydrophobic and cationic residues cooperate in antimicrobial peptides at lipid membranes.",
     "papers": [
       {
         "title": "Exploring a peripheral PIP2-binding site and its role in the alternative regulation of the TRP channel superfamily",
         "venue": "Journal of General Physiology, 2025",
         "doi": "10.1085/jgp.202413574"
+      },
+      {
+        "title": "Charybdotoxin binding to Shaker K+ channels is temperature sensitive in high external K+ but not in high external Na+",
+        "venue": "Journal of General Physiology, 2025",
+        "doi": "10.1085/jgp.202413590"
       },
       {
         "title": "Multipurpose On-the-Spot Peptide-Based Hydrogels for Skin, Cornea, and Heart Repair",

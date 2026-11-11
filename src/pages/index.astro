@@ -5,14 +5,15 @@ import research from '../data/research.json';
 import funding from '../data/funding.json';
 import publications from '../data/publications.json';
 
-const featured = research.filter((line) => line.image);
+const [lead, ...rest] = research;
 const latest = publications.slice(0, 4);
 ---
 
 <Layout title="HPoblete Lab | Bio-nanomaterial Simulations Group">
 
-  <!-- Hero: the group's render, edge to edge. On wide screens the name sits in the
-       empty sky between the two nanoparticles; sizes are relative to the image width. -->
+  <!-- First screen: the banner render and the summary fit together in one viewport.
+       The banner is cropped vertically on short windows; the group name sits in the
+       empty sky between the two nanoparticles, sized relative to the image width. -->
   <section class="hero relative bg-night">
     <img
       src="/images/banner-2400.jpg"
@@ -20,8 +21,8 @@ const latest = publications.slice(0, 4);
       sizes="100vw"
       width="2400"
       height="1154"
-      alt="Rendered molecular systems studied by the group: a lipid nanoparticle and a coated nanoparticle above peptides adsorbed on a flat surface."
-      class="block w-full h-auto max-md:aspect-[3/2] max-md:object-cover"
+      alt="Rendered molecular systems studied by the group: a lipid nanoparticle and a coated nanoparticle above peptides adsorbed on a graphite sheet."
+      class="hero-image"
       fetchpriority="high"
     />
     <div class="hero-title max-md:hidden">
@@ -30,10 +31,10 @@ const latest = publications.slice(0, 4);
     </div>
   </section>
 
-  <section class="page py-16 md:py-24 grid md:grid-cols-12 gap-x-12 gap-y-8 items-end">
+  <section class="page py-10 md:py-14 grid md:grid-cols-12 gap-x-12 gap-y-6 items-end">
     <div class="md:col-span-7">
       <h1 class="md:hidden text-muted mb-3">HPoblete Lab, Bio-nanomaterial Simulations Group</h1>
-      <p class="text-[2rem] leading-[1.15] md:text-[3rem] md:leading-[1.08] font-medium tracking-tight">
+      <p class="text-[2rem] leading-[1.12] md:text-[3.25rem] md:leading-[1.05] font-medium tracking-tight">
         We simulate what happens where biomolecules meet nanomaterials.
       </p>
     </div>
@@ -41,33 +42,47 @@ const latest = publications.slice(0, 4);
       <p class="text-lg leading-relaxed text-muted">
         We are a computational biophysics group at Universidad de Talca, Chile. With molecular dynamics we study peptides, lipids and proteins on nanoparticles and surfaces, and use what we learn to help design materials for medicine and the environment.
       </p>
-      <p class="mt-6 flex flex-wrap gap-3">
+      <p class="mt-5 flex flex-wrap gap-3">
         <a href="/research" class="btn">Our research</a>
         <a href="/team" class="btn btn-quiet">Meet the team</a>
       </p>
     </div>
   </section>
 
-  <section class="bg-wash py-16 md:py-24">
+  <!-- Research: renders on the dark lattice band. -->
+  <section class="lattice py-16 md:py-24">
     <div class="page">
       <div class="flex flex-wrap items-baseline justify-between gap-4">
-        <h2 class="h-section">Research</h2>
-        <a href="/research" class="link">All research lines</a>
+        <h2 class="h-section">What we work on</h2>
+        <a href="/research" class="underline text-leaf hover:text-white">All research lines</a>
       </div>
 
-      <div class="mt-10 grid gap-8 md:grid-cols-3">
-        {featured.map((line) => (
-          <a href="/research" class="group block bg-white">
-            <div class="aspect-[4/3] overflow-hidden bg-white">
-              <img src={line.image} alt={line.alt} loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-medium tracking-tight group-hover:text-accent">{line.title}</h3>
-              <p class="mt-2 text-muted leading-relaxed line-clamp-4">{line.summary}</p>
+      <div class="mt-10 grid gap-5 md:grid-cols-12">
+        <a href={`/research#${lead.id}`} class="tile md:col-span-7 md:row-span-2 min-h-[26rem]">
+          <img src={lead.image} alt={lead.alt} loading="lazy" />
+          <div>
+            <h3 class="text-2xl md:text-4xl font-medium tracking-tight leading-[1.1] max-w-[16ch]">{lead.title}</h3>
+            <p class="mt-3 text-white/80 leading-relaxed max-w-[44ch]">{lead.teaser}</p>
+          </div>
+        </a>
+
+        {rest.filter((line) => line.image).map((line) => (
+          <a href={`/research#${line.id}`} class="tile md:col-span-5 min-h-[17rem]">
+            <img src={line.image} alt={line.alt} loading="lazy" />
+            <div>
+              <h3 class="text-xl md:text-2xl font-medium tracking-tight leading-tight max-w-[20ch]">{line.title}</h3>
+              <p class="mt-2 text-white/80 leading-snug max-w-[40ch]">{line.teaser}</p>
             </div>
           </a>
         ))}
       </div>
+
+      {rest.filter((line) => !line.image).map((line) => (
+        <a href={`/research#${line.id}`} class="group mt-5 block border border-white/15 p-6 md:p-8 hover:border-leaf transition-colors">
+          <h3 class="text-xl md:text-2xl font-medium tracking-tight group-hover:text-leaf">{line.title}</h3>
+          <p class="mt-2 text-white/70 max-w-[70ch]">{line.teaser}</p>
+        </a>
+      ))}
     </div>
   </section>
 
@@ -81,7 +96,7 @@ const latest = publications.slice(0, 4);
       <ol class="mt-10 grid gap-x-12 gap-y-10 md:grid-cols-2">
         {latest.map((pub) => (
           <li class="border-t-2 border-ink pt-4">
-            <p class="text-muted"><em>{pub.journal}</em>, {pub.year}</p>
+            <p class="text-accent font-medium"><em>{pub.journal}</em>, {pub.year}</p>
             <h3 class="mt-1 text-xl font-medium leading-snug">
               <a href={`https://doi.org/${pub.doi}`} target="_blank" rel="noopener noreferrer" class="hover:text-accent">{pub.title}</a>
             </h3>
@@ -91,32 +106,49 @@ const latest = publications.slice(0, 4);
     </section>
   )}
 
-  <section class="bg-wash py-16 md:py-24">
-    <div class="page grid md:grid-cols-12 gap-x-12 gap-y-8">
-      <h2 class="h-section md:col-span-4">Funding</h2>
-
-      <div class="md:col-span-8">
-        {funding.current.map((item) => (
-          <div class="bg-white p-8 border-l-4 border-accent">
-            <p class="text-2xl font-medium tracking-tight">{item.grant}</p>
-            <p class="mt-1 text-muted">Project No. {item.number}, {item.agency}</p>
-            <p class="mt-1 text-muted">{item.role}</p>
-          </div>
-        ))}
-
-        <details class="mt-6">
-          <summary class="cursor-pointer text-muted hover:text-ink">Past funding</summary>
-          <ul class="mt-4 border-t border-line">
-            {funding.past.map((item) => (
-              <li class="py-4 border-b border-line">
-                <p><span class="font-medium">{item.grant}</span> <span class="text-muted">({item.years})</span></p>
-                <p class="text-muted">{item.role}</p>
-                {item.project && <p class="mt-1 text-muted italic">{item.project}</p>}
-              </li>
-            ))}
-          </ul>
-        </details>
+  <!-- Join: the render overlaps the edge of the band. -->
+  <section class="bg-wash overflow-hidden">
+    <div class="page grid md:grid-cols-12 gap-x-12 items-center">
+      <div class="md:col-span-6 py-16 md:py-24">
+        <h2 class="h-section">Work with us</h2>
+        <p class="mt-4 text-lg leading-relaxed text-muted max-w-[46ch]">
+          Most of our students come through the doctoral program in Modeling of Chemical and Biological Systems at Universidad de Talca. If you want to do a thesis, a research stay or a collaboration on molecular simulation of bio-nano interfaces, write to Horacio.
+        </p>
+        <p class="mt-6"><a href="mailto:hopoblete@utalca.cl" class="btn">hopoblete@utalca.cl</a></p>
       </div>
+      <img
+        src="/images/nanoparticle-membrane-violet.webp"
+        alt=""
+        loading="lazy"
+        class="md:col-span-6 w-[120%] max-w-none md:-mr-24 max-md:-mt-6 max-md:pb-10"
+      />
+    </div>
+  </section>
+
+  <section class="page py-16 md:py-24 grid md:grid-cols-12 gap-x-12 gap-y-8">
+    <h2 class="h-section md:col-span-4">Funding</h2>
+
+    <div class="md:col-span-8">
+      {funding.current.map((item) => (
+        <div class="border-l-4 border-accent pl-6 py-1">
+          <p class="text-2xl md:text-3xl font-medium tracking-tight">{item.grant}</p>
+          <p class="mt-1 text-muted">Project No. {item.number}, {item.agency}</p>
+          <p class="text-muted">{item.role}</p>
+        </div>
+      ))}
+
+      <details class="mt-8">
+        <summary class="cursor-pointer text-muted hover:text-ink">Past funding</summary>
+        <ul class="mt-4 border-t border-line">
+          {funding.past.map((item) => (
+            <li class="py-4 border-b border-line">
+              <p><span class="font-medium">{item.grant}</span> <span class="text-muted">({item.years})</span></p>
+              <p class="text-muted">{item.role}</p>
+              {item.project && <p class="mt-1 text-muted italic">{item.project}</p>}
+            </li>
+          ))}
+        </ul>
+      </details>
     </div>
   </section>
 
@@ -126,10 +158,23 @@ const latest = publications.slice(0, 4);
   .hero {
     container-type: inline-size;
   }
+  /* Full width at its natural proportions, but never taller than about half the
+     window, so the summary below stays in the first screen. */
+  .hero-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 2400 / 1154;
+    max-height: 58svh;
+    object-fit: cover;
+    object-position: center 42%;
+  }
+  @media (max-width: 47.99rem) {
+    .hero-image { aspect-ratio: 3 / 2; max-height: none; }
+  }
   /* Centred on the gap between the two nanoparticles (about 54% across). */
   .hero-title {
     position: absolute;
-    top: 7%;
+    top: 6%;
     left: 54.5%;
     transform: translateX(-50%);
     width: 30cqw;
@@ -146,5 +191,35 @@ const latest = publications.slice(0, 4);
     margin-top: 0.9cqw;
     font-size: 1.3cqw;
     font-weight: 500;
+  }
+
+  /* Research tile: render as background, text over a dark gradient. */
+  .tile {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: #232d36;
+    color: white;
+  }
+  .tile img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .tile:hover img {
+    transform: scale(1.04);
+  }
+  .tile > div {
+    position: relative;
+    width: 100%;
+    padding: 5rem 1.75rem 1.75rem;
+    background: linear-gradient(to top, rgb(15 20 25 / 0.92) 35%, rgb(15 20 25 / 0));
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tile img { transition: none; }
   }
 </style>

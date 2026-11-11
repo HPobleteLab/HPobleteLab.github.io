@@ -5,24 +5,24 @@ import Layout from '../layouts/Layout.astro';
 import research from '../data/research.json';
 
 interface Paper { title: string; venue: string; doi: string; }
-interface Line { title: string; summary: string; image?: string; alt?: string; papers: Paper[]; }
+interface Line { id: string; title: string; teaser: string; summary: string; image?: string; alt?: string; papers: Paper[]; }
 
 const lines = research as Line[];
 ---
 
 <Layout title="Research | HPoblete Lab">
-  <section class="bg-wash">
-    <div class="page py-14 md:py-20">
+  <section class="lattice">
+    <div class="page py-16 md:py-24">
       <h1 class="text-4xl md:text-6xl font-medium tracking-tight">Research</h1>
-      <p class="mt-6 text-xl md:text-2xl leading-snug text-muted max-w-[46ch]">
-        We use molecular simulation to understand the interface between biological molecules and engineered nanomaterials.
+      <p class="mt-6 text-xl md:text-2xl leading-snug text-white/75 max-w-[50ch]">
+        A peptide, a lipid or a protein behaves differently once it touches a material. We use molecular simulation to see how, atom by atom, and to turn that into design rules.
       </p>
     </div>
   </section>
 
   <div class="page">
     {lines.map((line, i) => (
-      <section class="py-14 md:py-20 border-b border-line last:border-b-0 grid md:grid-cols-12 gap-x-12 gap-y-8 items-center">
+      <section id={line.id} class="scroll-mt-20 py-14 md:py-20 border-b border-line last:border-b-0 grid md:grid-cols-12 gap-x-12 gap-y-8 items-center">
         {line.image && (
           <img
             src={line.image}
