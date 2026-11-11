@@ -1,0 +1,106 @@
+---
+// src/layouts/Layout.astro
+import '../styles/global.css';
+import Header from '../components/sections/Header.astro';
+import Footer from '../components/sections/Footer.astro';
+import { ClientRouter } from 'astro:transitions';
+// 1. IMPORTAMOS EL SEO
+import SEOMeta from '../components/seo/SEOMeta.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+const { 
+  title, 
+  description = "HPoblete Lab - Bio-nanomaterial Simulations group at Universidad de Talca. Exploring the intersection of biology, nanotechnology, and computer science.",
+  image = "/images/placeholder.jpg"
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en" class="m-0! p-0! bg-lab-dark dark:bg-[#0B1121] scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    
+    <SEOMeta title={title} description={description} image={image} />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+    <ClientRouter />
+
+    <script is:inline>
+      const applyTheme = () => {
+        const theme = (() => {
+          if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+            return localStorage.getItem('theme');
+          }
+          if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            return 'dark';
+          }
+          return 'light';
+        })();
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      };
+      applyTheme();
+      document.addEventListener('astro:after-swap', applyTheme);
+    </script>
+  </head>
+  
+  <body class="m-0! p-0! min-h-screen flex flex-col overflow-x-hidden bg-lab-light dark:bg-[#0B1121] text-lab-dark dark:text-gray-200 transition-colors duration-300">
+    
+    <Header /> 
+    
+    <main class="grow">
+      <slot />
+    </main>
+
+    <Footer />
+    
+    <script>
+      // Al usar astro:page-load, esto se ejecuta en cada navegación correctamente
+      document.addEventListener('astro:page-load', () => {
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('active');
+              // Dejamos de observar para evitar bugs al volver a la página
+              obs.unobserve(entry.target); 
+            }
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        // Solo observamos los elementos que aún no han sido activados
+        document.querySelectorAll('.reveal:not(.active)').forEach((el) => {
+          observer.observe(el);
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  /* Animación GLOBAL de aparición al hacer scroll (.reveal) */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+  }
+  
+  .reveal.active {
+    opacity: 1;
+    /* CRÍTICO: 'none' desactiva el transform para que el Modal interno no quede atrapado */
+    transform: none; 
+  }
+</style>

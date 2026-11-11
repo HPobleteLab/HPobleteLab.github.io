@@ -1,0 +1,162 @@
+---
+// src/pages/team.astro
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import TeamMember from '../components/sections/TeamMember.astro';
+import { groupTeamByCategory } from '../utils/collections';
+
+const teamMembers = await getCollection('team');
+const { pi, postdocs, researchAssistants, phdStudents, undergraduateStudents, alumni } = groupTeamByCategory(teamMembers);
+---
+
+<Layout title="Team | HPoblete Lab">
+  <main class="bg-slate-100 dark:bg-[#0B1121] min-h-screen flex flex-col transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-6 pt-24 pb-24 md:pt-32 w-full">
+
+      <div class="mb-12 border-b border-gray-200 dark:border-[#1E293B] pb-4">
+        <h1 class="reveal text-4xl md:text-5xl font-bold text-lab-dark dark:text-gray-100 border-l-4 border-lab-red pl-4">
+          Our Team
+        </h1>
+      </div>
+
+      <!-- PRINCIPAL INVESTIGATOR (Tarjeta estática y completa) -->
+      {pi && (
+        <section class="reveal mb-24">
+          <h2 class="text-sm font-bold uppercase tracking-[0.2em] text-orange-600 dark:text-lab-orange mb-8 flex items-center gap-4">
+            Principal Investigator <span class="h-px bg-gray-300 dark:bg-gray-700 grow"></span>
+          </h2>
+          
+          <article class="flex flex-col lg:flex-row bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#1E293B] border-l-8 border-l-lab-blue dark:border-l-lab-orange shadow-sm rounded-sm overflow-hidden w-full">
+            
+            <div class="w-full lg:w-1/3 xl:w-1/4 bg-slate-50 dark:bg-[#080D19] shrink-0">
+              <img src={pi.data.image} alt={pi.data.name} class="w-full h-full object-cover object-center" />
+            </div>
+            
+            <div class="w-full lg:w-2/3 xl:w-3/4 p-8 md:p-12 flex flex-col justify-center">
+              
+              <div class="mb-6">
+                <h3 class="text-3xl md:text-4xl font-bold text-lab-dark dark:text-white">{pi.data.name}</h3>
+                <p class="text-lab-blue dark:text-blue-400 font-bold uppercase tracking-wider text-sm mt-1">{pi.data.role || pi.data.category}</p>
+              </div>
+              
+              <div class="prose prose-lg dark:prose-invert prose-slate text-gray-700 dark:text-gray-300 max-w-none leading-relaxed mb-10 font-light">
+                <p>{pi.data.bio || pi.data.summary}</p>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-6 pt-8 border-t border-gray-100 dark:border-[#1E293B]">
+                <a href={`mailto:${pi.data.email}`} class="flex items-center gap-2 text-sm md:text-base font-semibold text-gray-600 dark:text-gray-300 hover:text-orange-600 dark:hover:text-lab-orange transition-colors group">
+                  <div class="p-2 bg-slate-100 dark:bg-slate-800 rounded-full group-hover:bg-orange-600/10 dark:group-hover:bg-lab-orange/10 transition-colors">
+                    <svg class="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                  </div>
+                  Email
+                </a>
+
+                {pi.data.googleScholar && (
+                  <a href={pi.data.googleScholar} target="_blank" class="flex items-center gap-2 text-sm md:text-base font-semibold text-gray-600 dark:text-gray-300 hover:text-lab-blue transition-colors group">
+                    <div class="p-2 bg-slate-100 dark:bg-slate-800 rounded-full group-hover:bg-lab-blue/10 transition-colors">
+                      <svg class="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2.12-1.15V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+                    </div>
+                    Scholar
+                  </a>
+                )}
+
+                {pi.data.orcid && (
+                  <a href={`https://orcid.org/${pi.data.orcid}`} target="_blank" class="flex items-center gap-2 text-sm md:text-base font-semibold text-gray-600 dark:text-gray-300 hover:text-[#A6CE39] transition-colors group">
+                    <div class="p-2 bg-slate-100 dark:bg-slate-800 rounded-full group-hover:bg-[#A6CE39]/10 transition-colors">
+                      <svg class="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.2 14.5H9.25V9h1.55v7.5zm-.77-8.39c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96zm5.83 8.39h-1.63v-3.1c0-1.28-.84-1.57-1.46-1.57-.69 0-1.39.46-1.39 1.63v3.04h-1.55V9h1.52v1.07c.39-.63 1.14-1.23 2.37-1.23 1.63 0 2.14 1.25 2.14 2.87v4.79z"/></svg>
+                    </div>
+                    ORCID
+                  </a>
+                )}
+              </div>
+
+            </div>
+          </article>
+        </section>
+      )}
+
+      <!-- POSTDOCS (NUEVA SECCIÓN) -->
+      {postdocs && postdocs.length > 0 && (
+        <section class="reveal mb-20">
+          <h2 class="text-sm font-bold uppercase tracking-[0.2em] text-lab-blue dark:text-blue-400 mb-10 flex items-center gap-4">
+            Postdoctoral Researchers <span class="h-px bg-gray-300 dark:bg-gray-700 grow"></span>
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {postdocs.map((member: any) => <TeamMember member={member} />)}
+          </div>
+        </section>
+      )}
+
+      <!-- PHD STUDENTS -->
+      {phdStudents && phdStudents.length > 0 && (
+        <section class="reveal mb-20">
+          <h2 class="text-sm font-bold uppercase tracking-[0.2em] text-lab-blue dark:text-blue-400 mb-10 flex items-center gap-4">
+            PhD Students <span class="h-px bg-gray-300 dark:bg-gray-700 grow"></span>
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {phdStudents.map((member: any) => <TeamMember member={member} />)}
+          </div>
+        </section>
+      )}
+
+      <!-- RESEARCH ASSISTANTS -->
+      {researchAssistants && researchAssistants.length > 0 && (
+        <section class="reveal mb-20">
+          <h2 class="text-sm font-bold uppercase tracking-[0.2em] text-lab-blue dark:text-blue-400 mb-10 flex items-center gap-4">
+            Research Assistants <span class="h-px bg-gray-300 dark:bg-gray-700 grow"></span>
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {researchAssistants.map((member: any) => <TeamMember member={member} />)}
+          </div>
+        </section>
+      )}
+
+      <!-- UNDERGRADUATE STUDENTS -->
+      {undergraduateStudents && undergraduateStudents.length > 0 && (
+        <section class="reveal mb-20">
+          <h2 class="text-sm font-bold uppercase tracking-[0.2em] text-lab-blue dark:text-blue-400 mb-10 flex items-center gap-4">
+            Undergraduate Students <span class="h-px bg-gray-300 dark:bg-gray-700 grow"></span>
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {undergraduateStudents.map((member: any) => <TeamMember member={member} />)}
+          </div>
+        </section>
+      )}
+
+      <!-- ALUMNI (TARJETAS MINIMALISTAS) -->
+      {alumni && alumni.length > 0 && (
+        <section class="reveal mt-10">
+          <h2 class="text-sm font-bold uppercase tracking-[0.2em] text-gray-400 mb-10 flex items-center gap-4">
+            Former Mentees <span class="h-px bg-gray-200 dark:bg-gray-800 grow"></span>
+          </h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {alumni.map((member: any) => (
+              <article class="flex items-center gap-4 bg-transparent border border-gray-200 dark:border-[#1E293B] p-4 rounded-sm grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100 hover:bg-white dark:hover:bg-[#0F172A] hover:shadow-sm">
+                
+                <img 
+                  src={(member.data.image && member.data.image !== '' && member.data.image !== '/images/team/default.jpg') 
+                    ? member.data.image 
+                    : '/images/cono.png'} 
+                  alt={member.data.name} 
+                  class="w-14 h-14 rounded-full object-cover shrink-0 bg-gray-200 dark:bg-gray-800" 
+                />
+                
+                <div class="flex flex-col overflow-hidden">
+                  <h3 class="font-bold text-gray-700 dark:text-gray-300 text-sm truncate w-full">
+                    {member.data.name}
+                  </h3>
+                  <p class="text-xs text-gray-500 dark:text-gray-500 truncate w-full mt-0.5">
+                    {member.data.role || "Alumni"}
+                  </p>
+                </div>
+
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+    </div>
+  </main>
+</Layout>

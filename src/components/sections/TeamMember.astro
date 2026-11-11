@@ -1,0 +1,65 @@
+---
+// src/components/sections/TeamMember.astro
+import type { CollectionEntry } from 'astro:content';
+import Modal from '../core/Modal.astro';
+
+interface Props {
+  member: CollectionEntry<'team'>;
+}
+
+const { member } = Astro.props;
+const { data } = member;
+
+const finalImage = (data.image && data.image !== '' && data.image !== '/images/team/default.jpg') 
+  ? data.image 
+  : '/images/cono.png';
+
+// Colores por defecto para los miembros activos (Postdocs, PhD, Assistants)
+const roleColor = "text-orange-600 dark:text-lab-orange";
+const hoverBorder = "group-hover:border-orange-600 dark:group-hover:border-lab-orange";
+---
+
+<div class="group relative cursor-pointer w-full" data-modal-target={data.id || member.id}>
+  
+  <div class="flex flex-col h-full mt-2">
+    <div class="px-4 relative z-10 shrink-0">
+      <img src={finalImage} alt={data.name} class="w-full aspect-square object-cover shadow-md border-4 border-white dark:border-[#0B1121] group-hover:-translate-y-2 transition-transform duration-300 bg-white dark:bg-gray-900" />
+    </div>
+    
+    <div class={`relative -mt-12 pt-16 px-6 pb-6 grow flex flex-col justify-end bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-[#1E293B] shadow-sm transition-colors duration-300 ${hoverBorder}`}>
+      <div class="flex justify-between items-end">
+        <div class="pr-2">
+          <h4 class="font-bold text-lg text-lab-dark dark:text-gray-100 leading-tight">{data.name}</h4>
+          <p class={`text-[11px] font-bold uppercase tracking-widest mt-1 ${roleColor}`}>{data.role}</p>
+        </div>
+        <svg class={`w-5 h-5 shrink-0 group-hover:translate-x-1 transition-transform ${roleColor}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<Modal id={data.id || member.id}>
+  <div class="flex flex-col md:flex-row gap-10 items-start">
+    <img src={finalImage} alt={data.name} class="w-48 h-48 rounded-sm object-cover border border-gray-200 dark:border-[#1E293B] shrink-0" />
+    
+    <div class="grow">
+      <h3 class="text-3xl font-bold text-lab-dark dark:text-gray-100 mb-1">{data.name}</h3>
+      <p class={`${roleColor} font-bold text-sm uppercase tracking-widest mb-8 border-b border-gray-100 dark:border-[#1E293B] pb-4`}>{data.role}</p>
+      
+      {data.bio && (
+        <div class="prose prose-lg dark:prose-invert prose-slate text-gray-700 dark:text-gray-300 leading-relaxed mb-8 max-w-none">
+          <p>{data.bio}</p>
+        </div>
+      )}
+
+      <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-orange-600 dark:text-lab-orange font-bold mt-auto uppercase tracking-wider">
+        {data.email && <a href={`mailto:${data.email}`} class="hover:text-orange-700 dark:hover:text-orange-300 hover:underline transition-colors">Email</a>}
+        {data.orcid && <a href={`https://orcid.org/${data.orcid}`} target="_blank" class="hover:text-orange-700 dark:hover:text-orange-300 hover:underline transition-colors">ORCID</a>}
+        {data.googleScholar && <a href={data.googleScholar} target="_blank" class="hover:text-orange-700 dark:hover:text-orange-300 hover:underline transition-colors">Google Scholar</a>}
+      </div>
+    </div>
+  </div>
+</Modal>

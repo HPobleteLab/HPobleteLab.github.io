@@ -1,0 +1,266 @@
+---
+// src/pages/publications.astro
+import Layout from '../layouts/Layout.astro';
+import { highlightAuthor } from '../utils/textFormatters';
+import Badge from '../components/core/Badge.astro';
+
+// 1. Configuramos el acceso a OpenAlex con el ORCID exacto de Horacio Poblete
+const ORCID = "0000-0003-2650-3565";
+// Solicitamos hasta 100 papers ordenados del más reciente al más antiguo
+const ENDPOINT = `https://api.openalex.org/works?filter=author.orcid:https://orcid.org/${ORCID}&sort=publication_year:desc&per-page=100`;
+
+// 2. Descargamos los datos gratuitos desde la API
+const response = await fetch(ENDPOINT);
+const openAlexData = await response.json();
+
+// 3. Transformamos el formato de OpenAlex al molde de tus tarjetas de Astro
+const sortedPubs = (openAlexData.results || []).map((work: any) => {
+  
+  // Extraemos y unimos la lista de autores
+  const authorsList = work.authorships 
+    ? work.authorships.map((a: any) => a.author.display_name).join(", ")
+    : "Autores no disponibles";
+
+  // Formateamos las páginas (Ej: "104-112")
+  const pages = work.biblio?.first_page 
+    ? `${work.biblio.first_page}${work.biblio.last_page ? '-' + work.biblio.last_page : ''}` 
+    : null;
+
+  return {
+    data: {
+      title: work.title || "Sin título",
+      authors: authorsList,
+      journal: work.primary_location?.source?.display_name || "Revista no especificada",
+      year: work.publication_year ? work.publication_year.toString() : "N/A",
+      // Usamos el DOI como link principal para el botón "Read More"
+      link: work.doi || work.id || "#", 
+      // Limpiamos el texto del DOI para mostrar solo el número en cursiva
+      doi: work.doi ? work.doi.replace("https://doi.org/", "") : null,
+      volume: work.biblio?.volume || null,
+      pages: pages,
+      // Propiedades visuales opcionales que OpenAlex no entrega
+      category: null, 
+      image: null
+    }
+  };
+});
+
+// 4. Filtramos para eliminar errores y extraemos los años únicos para los botones
+const allYears = [...new Set(sortedPubs.map((pub: any) => pub.data.year))].filter(y => y !== "N/A");
+---
+
+<Layout title="Publications | HPoblete Lab">
+  <main class="bg-slate-100 dark:bg-[#0B1121] min-h-screen transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-6 pt-24 pb-24 md:pt-32">
+      
+      <div class="reveal flex flex-col lg:flex-row justify-between items-start lg:items-center mb-16 border-b border-gray-200 dark:border-[#1E293B] pb-10 gap-8">
+        <div>
+          <h1 class="text-5xl md:text-6xl font-bold text-lab-dark dark:text-gray-100 border-l-4 border-lab-red pl-4">
+            Publications
+          </h1>
+        </div>
+        
+        <a href="https://scholar.google.com/citations?user=feuxRSEAAAAJ&hl=es" target="_blank" class="group flex items-center justify-center gap-3 bg-orange-600 hover:bg-orange-700 dark:bg-lab-orange dark:hover:bg-orange-500 text-white px-8 py-4 text-base md:text-lg font-bold shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all rounded-sm w-full md:w-auto shrink-0">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/>
+          </svg>
+          Google Scholar Profile
+        </a>
+      </div>
+
+      <div class="reveal flex flex-wrap justify-center md:justify-start items-center gap-x-4 md:gap-x-8 gap-y-4 mb-12 border-b border-gray-200 dark:border-[#1E293B] pb-2">
+        <button class="filter-btn text-[clamp(11px,1.5vw,16px)] font-bold uppercase tracking-widest text-orange-600 dark:text-lab-orange hover:text-lab-dark dark:hover:text-gray-300 border-b-2 border-orange-600 dark:border-lab-orange pb-2 transition-colors" data-filter="all">
+          Show All
+        </button>
+        {allYears.map(year => (
+          <button class="filter-btn text-[clamp(11px,1.5vw,16px)] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 hover:text-lab-dark dark:hover:text-gray-300 border-b-2 border-transparent pb-2 transition-colors" data-filter={year.toString()}>
+            {year}
+          </button>
+        ))}
+      </div>
+
+      <div class="relative min-h-100">
+        
+        <div id="pub-loader" class="absolute inset-0 flex flex-col items-center justify-center bg-slate-100/80 dark:bg-[#0B1121]/80 z-30 pointer-events-none opacity-0 transition-opacity duration-300">
+          <div class="w-12 h-12 border-4 border-gray-300 dark:border-gray-700 border-t-orange-600 dark:border-t-lab-orange rounded-full animate-spin mb-4"></div>
+          <span class="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">Loading Papers...</span>
+        </div>
+
+        <div class="flex flex-col gap-5" id="publications-container">
+          {sortedPubs.map((pub, index) => (
+            <article 
+              class="pub-card flex flex-col md:flex-row gap-6 bg-white dark:bg-[#0F172A] p-6 md:p-8 border border-gray-200 dark:border-[#1E293B] shadow-sm hover:shadow-md rounded-sm transform origin-center opacity-0"
+              data-year={pub.data.year}
+            >
+              
+              <div class="flex flex-col flex-1">
+                <div class="flex flex-wrap items-center gap-3 mb-3">
+                  {pub.data.category && (
+                    <Badge text={pub.data.category} color="blue" />
+                  )}
+                  <span class="text-xs md:text-sm font-bold text-orange-600 dark:text-lab-orange tracking-widest">
+                    {pub.data.year}
+                  </span>
+                </div>
+
+                <h3 class="text-xl md:text-2xl font-bold text-lab-blue dark:text-blue-400 mb-2 leading-snug pr-4">
+                  {pub.data.title}
+                </h3>
+
+                <p class="text-sm md:text-base text-gray-700 dark:text-gray-300 mb-3 leading-relaxed font-light" set:html={highlightAuthor(pub.data.authors)} />
+
+                <p class="text-sm text-gray-500 dark:text-gray-400 italic mb-5">
+                  {pub.data.journal} {pub.data.volume ? `, Vol. ${pub.data.volume}` : ''}{pub.data.pages ? `, pp. ${pub.data.pages}` : ''}.
+                  {pub.data.doi && <span class="ml-2 font-mono text-[11px] md:text-xs not-italic bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">doi: {pub.data.doi}</span>}
+                </p>
+
+                <div class="mt-auto pt-2">
+                  <a href={pub.data.link} target="_blank" class="group inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-lab-dark dark:text-white hover:text-orange-600 dark:hover:text-lab-orange transition-colors">
+                    Read More
+                    <svg class="w-4 h-4 transition-transform duration-300 transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+
+              {pub.data.image && (
+                <div class="w-full md:w-1/4 lg:w-1/5 shrink-0 flex items-center justify-center pt-6 md:pt-0 md:pl-6 border-t md:border-t-0 md:border-l border-gray-100 dark:border-[#1E293B]">
+                  <img 
+                    src={pub.data.image} 
+                    alt={`Graphical abstract for ${pub.data.title}`} 
+                    class="w-full h-auto max-h-40 md:max-h-full object-contain rounded-sm mix-blend-multiply dark:mix-blend-normal transition-transform duration-500 hover:scale-105" 
+                  />
+                </div>
+              )}
+
+            </article>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </main>
+</Layout>
+
+<style is:global>
+  @keyframes popInFromBottom {
+    0% { opacity: 0; transform: translateY(40px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes shrinkToCenter {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.9); }
+  }
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    
+    // --- LÓGICA DE FILTRADO, SPINNER Y ANIMACIONES PRECISAS ---
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.pub-card') as NodeListOf<HTMLElement>;
+    const loader = document.getElementById('pub-loader');
+    
+    // NUEVO: Lanzar la animación inicial desde JS para arreglar el bloqueo de clics
+    cards.forEach((card, index) => {
+      card.style.animation = 'none';
+      void card.offsetWidth; // Fuerza al navegador a registrar la tarjeta
+      card.style.animation = `popInFromBottom 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.05}s forwards`;
+    });
+
+    // Variable para prevenir clics repetidos rápidos que rompen la animación
+    let isAnimating = false;
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Si ya se está moviendo algo, ignoramos el clic
+        if (isAnimating) return;
+        
+        const filter = btn.getAttribute('data-filter');
+        
+        // Comprobar si el filtro seleccionado es el que ya está activo
+        const activeBtn = document.querySelector('.filter-btn.text-orange-600, .filter-btn.dark\\:text-lab-orange');
+        if (activeBtn && activeBtn.getAttribute('data-filter') === filter) return;
+
+        isAnimating = true;
+
+        // 1. Cambiar color del menú inmediatamente
+        filterBtns.forEach(b => {
+          b.classList.remove('text-orange-600', 'dark:text-lab-orange', 'border-orange-600', 'dark:border-lab-orange');
+          b.classList.add('text-gray-400', 'dark:text-gray-500', 'border-transparent');
+        });
+
+        btn.classList.remove('text-gray-400', 'dark:text-gray-500', 'border-transparent');
+        btn.classList.add('text-orange-600', 'dark:text-lab-orange', 'border-orange-600', 'dark:border-lab-orange');
+
+        let cardsToHide: HTMLElement[] = [];
+        let cardsToShow: HTMLElement[] = [];
+
+        // Separar tarjetas que se van de las que se quedan/entran
+        cards.forEach(card => {
+          const itemYear = card.getAttribute('data-year');
+          const isMatch = filter === 'all' || itemYear === filter;
+          const isVisible = card.style.display !== 'none';
+
+          if (!isMatch && isVisible) cardsToHide.push(card);
+          if (isMatch) cardsToShow.push(card);
+        });
+
+        // FASE 1: Las tarjetas que no sirven se encogen y desaparecen
+        cardsToHide.forEach(card => {
+          card.style.animation = 'none';
+          void card.offsetWidth;
+          card.style.animation = 'shrinkToCenter 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards';
+        });
+
+        // Esperar a que termine de encogerse (300ms) o pasar directo si no había nada que ocultar
+        const delayToLoad = cardsToHide.length > 0 ? 300 : 0;
+
+        setTimeout(() => {
+          // Ocultar TODO el contenido físicamente para dejar espacio al spinner
+          cards.forEach(card => {
+            card.style.display = 'none';
+            card.style.animation = 'none';
+          });
+
+          // FASE 2: Mostrar el Spinner de Carga
+          if (loader) {
+            loader.classList.remove('hidden');
+            setTimeout(() => loader.classList.remove('opacity-0'), 10);
+          }
+
+          // Esperar un tiempo prudente (ej. 600ms) para que el spinner luzca profesional
+          setTimeout(() => {
+            
+            // FASE 3: Quitar el Spinner y mostrar tarjetas nuevas desde abajo
+            if (loader) {
+              loader.classList.add('opacity-0');
+              setTimeout(() => loader.classList.add('hidden'), 300);
+            }
+
+            // Las tarjetas correctas aparecen desde abajo
+            cardsToShow.forEach((card, index) => {
+              card.style.display = 'flex'; // Usamos flex para mantener el flex-row
+              card.style.animation = 'none';
+              void card.offsetWidth; // Reflow crítico para que el navegador capte el CSS
+              
+              // Animación al salir del filtro (también con efecto cascada suave)
+              card.style.animation = `popInFromBottom 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.05}s forwards`;
+            });
+
+            // Liberar el bloqueo para poder volver a hacer clic después de que termine la última animación
+            setTimeout(() => {
+              isAnimating = false;
+            }, 500 + (cardsToShow.length * 50));
+
+          }, 600); // Duración del spinner
+
+        }, delayToLoad);
+
+      });
+    });
+
+  });
+</script>

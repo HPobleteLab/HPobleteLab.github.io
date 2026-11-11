@@ -1,0 +1,11 @@
+{
+  "id": "matias-valdes",
+  "name": "Matias Valdes Peña",
+  "role": "PhD Student",
+  "category": "PhD Student",
+  "image": "/images/team/default.jpg",
+  "email": "mvaldes@utalca.cl",
+  "linkedin": "https://www.linkedin.com/",
+  "bio": "Matias supports the laboratory's research lines by setting up molecular dynamics simulations, performing complex data analysis, and maintaining the computational infrastructure.",
+  "order": 2
+}

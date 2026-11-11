@@ -1,0 +1,66 @@
+/* src/styles/global.css */
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* 1. SISTEMA CENTRAL DE COLORES (Cambias el HEX aquí y cambia en toda la web) */
+@theme {
+  /* Fondo y textos (basado en el negro del logo) */
+  --color-lab-dark: #0a0a0a;        /* Fondo oscuro puro */
+  --color-lab-darker: #000000;
+  --color-lab-light: #f4f6f8;       /* Gris muy claro para fondos en modo claro */
+  
+  /* Colores extraídos de tu molécula */
+  --color-lab-blue: #3285d8;        /* El átomo central azul */
+  --color-lab-blue-hover: #256bb3;  /* Para cuando pasas el mouse por botones azules */
+  
+  --color-lab-orange: #f2a632;      /* Los átomos naranjas/amarillos */
+  --color-lab-orange-hover: #cc8822;
+
+  --color-lab-red: #ea4844;         /* Los átomos rojos pequeños */
+  
+  /* Color de las líneas conectoras */
+  --color-lab-gray: #e5e7eb;
+}
+
+@layer base {
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
+    overflow-x: hidden;
+    /* Puedes decidir si tu web será oscura o clara por defecto */
+    /* background-color: var(--color-lab-light); */
+    /* color: var(--color-lab-dark); */
+  }
+}
+
+/* --- SISTEMA DE ANIMACIÓN AL HACER SCROLL --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  /* Esta curva bezier hace que el movimiento sea elegante y suave al final */
+  transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ACCESIBILIDAD: Si el usuario tiene configurado su sistema operativo 
+  para "reducir movimiento" (por mareos), desactivamos la animación. 
+*/
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: none;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

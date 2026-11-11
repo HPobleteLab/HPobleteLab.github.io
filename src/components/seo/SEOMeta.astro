@@ -1,0 +1,36 @@
+---
+// src/components/seo/SEOMeta.astro
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+}
+
+const { 
+  title, 
+  description,
+  image = '/images/placeholder.jpg' 
+} = Astro.props;
+
+// Construimos la URL absoluta para la imagen (requerido por Twitter y Facebook)
+const siteUrl = Astro.site ? Astro.site.toString() : Astro.url.origin;
+const ogImage = new URL(image, siteUrl).toString();
+const currentUrl = Astro.url.href;
+---
+
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+
+<meta property="og:type" content="website" />
+<meta property="og:url" content={currentUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage} />
+
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={currentUrl} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={ogImage} />

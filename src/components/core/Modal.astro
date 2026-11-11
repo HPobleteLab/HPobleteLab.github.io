@@ -1,0 +1,109 @@
+---
+// src/components/core/Modal.astro
+interface Props {
+  id: string;
+  maxWidth?: string; 
+}
+
+const { id, maxWidth = "max-w-3xl" } = Astro.props;
+---
+
+<dialog id={`modal-${id}`} class="p-0 m-0 w-full h-full max-w-none max-h-none bg-transparent outline-none opacity-0 transition-opacity duration-300">
+  
+  <div class="fixed inset-0 bg-black/80 flex items-center justify-center p-4 modal-overlay cursor-default">
+    
+    <div class={`modal-content transform-gpu will-change-transform scale-95 translate-y-4 opacity-0 transition-all duration-300 ease-out bg-white dark:bg-[#0F172A] rounded-sm shadow-2xl w-full ${maxWidth} max-h-[90vh] overflow-y-auto relative p-8 md:p-12 font-sans text-left border dark:border-[#1E293B]`}>
+      
+      <button class="absolute top-6 right-6 text-gray-500 hover:text-lab-red transition-colors modal-close" data-modal-close={id}>
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+
+      <slot />
+
+    </div>
+  </div>
+</dialog>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    
+    function openModal(modalId: string | null) {
+      if (!modalId) return;
+      const modal = document.getElementById(`modal-${modalId}`);
+      // Verificamos que sea un Dialog
+      if (modal && typeof (modal as HTMLDialogElement).showModal === 'function') {
+        const dialog = modal as HTMLDialogElement;
+        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+        
+        // Magia nativa: esto lo eleva por encima de todo el sitio web
+        dialog.showModal();
+        
+        // Animaciones de entrada
+        setTimeout(() => {
+          dialog.classList.remove('opacity-0');
+          const content = dialog.querySelector('.modal-content');
+          if (content) {
+            content.classList.remove('scale-95', 'translate-y-4', 'opacity-0');
+            content.classList.add('scale-100', 'translate-y-0', 'opacity-100');
+          }
+        }, 20);
+        
+        document.documentElement.style.paddingRight = `${scrollbarWidth}px`;
+        document.documentElement.style.overflow = 'hidden';
+      }
+    }
+
+    function closeModal(modalId: string | null) {
+      if (!modalId) return;
+      const modal = document.getElementById(`modal-${modalId}`);
+      if (modal && typeof (modal as HTMLDialogElement).close === 'function') {
+        const dialog = modal as HTMLDialogElement;
+        
+        // Animaciones de salida
+        dialog.classList.add('opacity-0');
+        const content = dialog.querySelector('.modal-content');
+        if (content) {
+          content.classList.remove('scale-100', 'translate-y-0', 'opacity-100');
+          content.classList.add('scale-95', 'translate-y-4', 'opacity-0');
+        }
+        
+        setTimeout(() => {
+          dialog.close(); // Cierra el modal nativo
+          document.documentElement.style.paddingRight = '0px';
+          document.documentElement.style.overflow = '';
+        }, 300);
+      }
+    }
+
+    // Eventos (limpiamos antes de añadir por si Astro recarga la vista)
+    document.querySelectorAll('[data-modal-target]').forEach(el => {
+      el.removeEventListener('click', el as any);
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal(el.getAttribute('data-modal-target'));
+      });
+    });
+
+    document.querySelectorAll('[data-modal-close]').forEach(btn => {
+      btn.removeEventListener('click', btn as any);
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeModal(btn.getAttribute('data-modal-close'));
+      });
+    });
+
+    // Cerrar al hacer clic en el fondo negro
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+      overlay.removeEventListener('click', overlay as any);
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+          const dialogId = overlay.closest('dialog')?.id.replace('modal-', '');
+          if (dialogId) closeModal(dialogId);
+        }
+      });
+    });
+
+  });
+</script>
