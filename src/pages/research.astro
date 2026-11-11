@@ -28,7 +28,7 @@ const lines = research as Line[];
             src={line.image}
             alt={line.alt}
             loading={i === 0 ? 'eager' : 'lazy'}
-            class:list={['w-full h-auto md:col-span-6', i % 2 === 1 && 'md:order-2']}
+            class:list={['w-full h-auto max-h-[36rem] object-cover md:col-span-6', i % 2 === 1 && 'md:order-2']}
           />
         )}
         <div class:list={[line.image ? 'md:col-span-6' : 'md:col-span-8']}>

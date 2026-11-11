@@ -1,5 +1,22 @@
 [
   {
+    "id": "https://doi.org/10.1021/acs.jcim.6c02272",
+    "title": "Sequence Dependence of Folding and Self-Assembly of Glycine-X Repeat Peptides on Graphite",
+    "authors": [
+      "Eduardo Cubillos-Llantén",
+      "Julius A. Neumann",
+      "Horacio Poblete",
+      "Jeffrey Comer"
+    ],
+    "journal": "Journal of Chemical Information and Modeling",
+    "year": 2026,
+    "date": null,
+    "volume": null,
+    "pages": null,
+    "doi": "10.1021/acs.jcim.6c02272",
+    "type": "article"
+  },
+  {
     "id": "https://doi.org/10.1021/acs.nanolett.6c00637",
     "title": "Lipid Composition Determines Hybrid Nanoparticle Selectivity: Beyond Membrane Mimicry in Cancer Targeting",
     "authors": [

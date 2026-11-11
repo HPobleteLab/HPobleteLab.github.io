@@ -2,10 +2,10 @@
   {
     "id": "peptides-on-surfaces",
     "title": "How peptides fold and assemble on surfaces",
-    "teaser": "Sequence decides which residues anchor, which structure survives adsorption and whether neighbours order into layers.",
-    "summary": "When a peptide meets a solid surface, its sequence decides almost everything: which side chains anchor, which secondary structure survives adsorption, and whether neighbouring chains order into layers. We compute conformational ensembles and free energies of peptides on graphite, gold and silver to learn those rules, and use them to choose sequences that fold, assemble or stabilize a nanoparticle on a given material.",
-    "image": "/images/coated-nanoparticle.jpg",
-    "alt": "Render of a nanoparticle with a metallic core covered by a shell of molecules.",
+    "teaser": "On graphite, cyclic glycine-X peptides fold into β-hairpins and assemble through hydrogen bonds. Sequence decides how well.",
+    "summary": "On graphite, cyclic peptides built from glycine-X repeats fold into β-hairpins that then assemble through intermolecular hydrogen bonds. Which turn sequence enforces the hairpin, and which X residue favours correct folding over misfolding or strong assembly over weak, are questions we answer with simulations of spontaneous folding and free-energy calculations: the GPGG turn enforces the hairpin best, GT repeats fold most reliably but assemble weakly, and GG repeats assemble strongly but misfold more often. We ask the same kind of question on gold and silver, where short and collagen-like peptides stabilize nanoparticles and nanosurfaces.",
+    "image": "/images/peptide-hairpins-graphite.jpg",
+    "alt": "Render of cyclic peptides folded into beta-hairpins and assembled side by side on a graphite surface.",
     "papers": [
       {
         "title": "Sequence Dependence of Folding and Self-Assembly of Glycine-X Repeat Peptides on Graphite",
