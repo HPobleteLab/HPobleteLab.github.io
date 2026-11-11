@@ -1,33 +1,31 @@
 // src/utils/collections.ts
 import type { CollectionEntry } from 'astro:content';
 
-// 1. ORDENAR PUBLICACIONES (Por año y luego por orden)
-export const sortPublications = (publications: CollectionEntry<'publications'>[]) => {
-  return publications.sort((a, b) => {
-    const yearDiff = parseInt(b.data.year) - parseInt(a.data.year);
-    if (yearDiff !== 0) return yearDiff;
-    return (a.data.order || 99) - (b.data.order || 99);
-  });
-};
+type Member = CollectionEntry<'team'>;
 
-// 2. EXTRAER CATEGORÍAS ÚNICAS DE PUBLICACIONES
-export const getPublicationCategories = (publications: CollectionEntry<'publications'>[]) => {
-  return [...new Set(publications.map(pub => pub.data.category || pub.data.year))].sort((a,b) => b.localeCompare(a));
-};
+const byOrder = (a: Member, b: Member) =>
+  a.data.order - b.data.order || a.data.name.localeCompare(b.data.name);
 
-// 3. AGRUPAR AL EQUIPO POR ROLES
-export function groupTeamByCategory(team) {
+// Groups team members by category, each group sorted by `order`.
+export function groupTeamByCategory(team: Member[]) {
+  const of = (category: Member['data']['category']) =>
+    team.filter((m) => m.data.category === category).sort(byOrder);
+
   return {
-    pi: team.find(m => m.data.category === 'Principal Investigator'),
-    postdocs: team.filter(m => m.data.category === 'Postdoc' || m.data.category === 'Postdoctoral Researcher'),
-    phdStudents: team.filter(m => m.data.category === 'PhD Student'),
-    researchAssistants: team.filter(m => m.data.category === 'Research Assistant'),
-    undergraduateStudents: team.filter(m => m.data.category === 'Undergraduate Student'),
-    alumni: team.filter(m => m.data.category === 'Alumni' || m.data.category === 'Former Mentee')
+    pi: of('Principal Investigator')[0],
+    postdocs: of('Postdoc'),
+    phdStudents: of('PhD Student'),
+    researchAssistants: of('Research Assistant'),
+    undergraduateStudents: of('Undergraduate Student'),
+    alumni: of('Alumni'),
   };
 }
 
-// 4. ORDENAR GENÉRICO POR VARIABLE "ORDER" (Para Research Lines)
-export const sortByOrder = <T extends { data: { order?: number } }>(items: T[]) => {
-  return items.sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
-};
+// "Eduardo Cubillos Llantén" -> "EC"
+export const initials = (name: string) =>
+  name
+    .replace(/^Dr\.?\s+/i, '')
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase() ?? '')
+    .join('');

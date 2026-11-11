@@ -1,10 +1,7 @@
 {
-  "id": "raul-sepulveda",
   "name": "Raul Sepulveda",
   "role": "PhD Student",
   "category": "PhD Student",
-  "image": "/images/team/default.jpg",
-  "email": "",
   "bio": "Raul's thesis work involves large-scale simulations to understand soft material behaviors at the atomic level.",
   "order": 7
 }   

@@ -1,10 +1,7 @@
 {
-  "id": "eduardo-cubillos",
-  "name": "Eduardo Cubillos Llanten",
+  "name": "Eduardo Cubillos Llantén",
   "role": "PhD Student",
   "category": "PhD Student",
-  "image": "/images/team/default.jpg",
-  "email": "",
   "bio": "Eduardo's doctoral research centers on the computational design of novel bio-nanomaterials and free energy calculations.",
   "order": 4
 }
