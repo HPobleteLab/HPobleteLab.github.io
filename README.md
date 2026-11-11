@@ -4,7 +4,7 @@ Source of the website of the HPoblete Lab (Bio-nanomaterial Simulations Group), 
 
 ## Run it locally
 
-Requires Node.js 22.12 or newer.
+Requires Node.js 22.23.4 or newer (Astro 7).
 
 ```bash
 npm install
