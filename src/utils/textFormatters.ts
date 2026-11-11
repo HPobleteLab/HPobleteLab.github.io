@@ -8,8 +8,12 @@ const currentMembersRegex = /(Alejandro Ide|A\.?\s*Ide|Basti[aá]n(?:[-\s\u2010-
 
 const alumniRegex = /(Constanza Galaz(?:[-\s\u2010-\u2015]Araya)?|C\.?\s*Galaz(?:[-\s\u2010-\u2015]Araya)?|Mat[ií]as Z[uú][nñ]iga(?:[-\s\u2010-\u2015]Bustos)?|M\.?\s*Z[uú][nñ]iga(?:[-\s\u2010-\u2015]Bustos)?)/gi;
 
+const escapeHtml = (text: string) =>
+  text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+// Returns an HTML string: the input is escaped first, so it is safe to use with set:html.
 export const highlightAuthor = (authorsString: string) => {
-  let result = authorsString;
+  let result = escapeHtml(authorsString);
   // Nivel 1: PI (Naranja Extra Negrita Alto Contraste)
   result = result.replace(piRegex, '<span class="font-extrabold text-orange-600 dark:text-orange-400">$1</span>');
   // Nivel 2: Current Team (Azul)
