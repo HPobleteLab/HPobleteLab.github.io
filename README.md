@@ -53,6 +53,10 @@ Research lines live in `src/data/research.json`: `title`, `summary`, an optional
 
 Funding lives in `src/data/funding.json`, split into `current` (shown on the home page) and `past` (collapsed under "Past funding"). When a grant ends, move it from one list to the other.
 
+## Replace the tab icon
+
+The icon files in `public/` (`favicon.ico`, `apple-touch-icon.png`) and `public/images/favicon-16x16.png`, `favicon-32x32.png` are all generated from `public/images/logo.png`, which is the group logo on a transparent background. Replacing the logo means regenerating those five files at 16, 32, 48 and 180 px.
+
 ## Add an image
 
 Keep the original in `renders-src/` and put a web-sized copy in `public/images/` (JPEG for opaque renders, WebP for transparent ones, around 1600 to 2400 px wide and under 400 kB). Files over 100 MB cannot be pushed to GitHub.
