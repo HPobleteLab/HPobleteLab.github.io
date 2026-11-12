@@ -88,3 +88,12 @@ Author names are highlighted by the patterns in `src/utils/textFormatters.ts`; a
 Every push to `main` builds and publishes the site through `.github/workflows/deploy.yml`. One-time setup in the GitHub repository: Settings → Pages → Build and deployment → Source: **GitHub Actions**.
 
 The site URL is set in `astro.config.mjs` (`site`). Internal links assume the site is served from the domain root, which is the case for a repository named `<organization>.github.io` or for a custom domain.
+
+## Licence
+
+The source code of the site is MIT licensed (`LICENSE`), so anyone is welcome to
+build their own group page on it.
+
+The renders, figures, photographs, logo and written content are **not** covered
+by that licence and may not be reused without permission. See
+`LICENSE-CONTENT.md`.
