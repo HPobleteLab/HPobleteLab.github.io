@@ -4,10 +4,12 @@
     "position": "Researcher",
     "affiliation": "Instituto de Investigación Interdisciplinaria (I3) and Center for Bioinformatics, Simulation and Modeling (CBSM), Universidad de Talca",
     "place": "Talca, Chile",
-    "note": "Co-supervises three of the group's doctoral theses and takes part in our lab meetings. His own work covers redox proteins and the photomodulation of antioxidant systems.",
+    "note": "Our closest collaborator: he co-supervises doctoral theses with Horacio and is involved in projects across all of the group's research lines. His own work covers redox proteins and the photomodulation of antioxidant defence systems.",
     "link": "https://investigadores.anid.cl/en/public_search/researcher?id=22587",
     "linkLabel": "ANID profile",
-    "match": ["Zamora"]
+    "match": [
+      "Zamora"
+    ]
   },
   {
     "name": "Jeffrey R. Comer",
@@ -17,7 +19,9 @@
     "note": "Co-supervision and host of research stays. Shared interest in the interface between nanotechnology and biology, and in transport phenomena in living systems.",
     "link": "https://nicks.ksu.edu/people/saved-for-archive/faculty/comer/index.html",
     "linkLabel": "Profile",
-    "match": ["Comer"]
+    "match": [
+      "Comer"
+    ]
   },
   {
     "name": "Riccardo Alessandri",
@@ -27,7 +31,9 @@
     "note": "Co-supervision on multiscale models of hybrid nanoparticles and their membranes.",
     "link": "https://alessandri-group.github.io/",
     "linkLabel": "Group site",
-    "match": ["Alessandri"]
+    "match": [
+      "Alessandri"
+    ]
   },
   {
     "name": "Cristián Vilos",
@@ -37,7 +43,9 @@
     "note": "Co-supervision on lipid-polymer nanoparticles for targeted delivery, where his group makes and tests what we model.",
     "link": "https://investigadores.anid.cl/en/public_search/researcher?id=24180",
     "linkLabel": "ANID profile",
-    "match": ["Vilos"]
+    "match": [
+      "Vilos"
+    ]
   },
   {
     "name": "Alexis Aspée",
@@ -47,6 +55,9 @@
     "note": "Co-supervision on fluorescent probes and free-radical chemistry in lipid membranes.",
     "link": "https://fqyb-magister-quimica.usach.cl/?p=836",
     "linkLabel": "Profile",
-    "match": ["Aspée", "Aspee"]
+    "match": [
+      "Aspée",
+      "Aspee"
+    ]
   }
 ]
