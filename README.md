@@ -15,7 +15,7 @@ npm run build      # production build into dist/
 ## Where things live
 
 ```
-src/pages/              one file per page (index, research, publications, team, 404)
+src/pages/              one file per page (index, research, publications, team, collaborators, 404)
 src/components/         header, footer, home sections, team card
 src/content/team/       one JSON file per lab member
 src/data/               research lines, funding, publication list (generated) and its exclusion list
@@ -56,6 +56,12 @@ Funding lives in `src/data/funding.json`, split into `current` (shown on the hom
 ## Add an image
 
 Keep the original in `renders-src/` and put a web-sized copy in `public/images/` (JPEG for opaque renders, WebP for transparent ones, around 1600 to 2400 px wide and under 400 kB). Files over 100 MB cannot be pushed to GitHub.
+
+## Add a collaborator
+
+Collaborators live in `src/data/collaborators.json`: `name`, `position`, `affiliation`, `place`, a `note` on what you do together, an optional `link` with its `linkLabel`, and `match`.
+
+`match` is a list of name fragments used to find that person in the publication list, so the joint papers under each collaborator are never maintained by hand. A surname is usually enough (`["Comer"]`); add spelling variants when the accent differs between records (`["Aspée", "Aspee"]`).
 
 ## Update the publication list
 

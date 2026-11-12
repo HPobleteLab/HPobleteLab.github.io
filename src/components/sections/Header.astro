@@ -4,6 +4,7 @@ const links = [
   { href: '/research', label: 'Research' },
   { href: '/publications', label: 'Publications' },
   { href: '/team', label: 'Team' },
+  { href: '/collaborators', label: 'Collaborators' },
 ];
 
 // Built pages are served as /team/, so drop the trailing slash before comparing.
@@ -15,7 +16,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     <a href="/" class="text-lg font-semibold tracking-tight">HPoblete Lab</a>
 
     <nav aria-label="Main">
-      <ul class="flex gap-1 text-[0.95rem]">
+      <ul class="flex flex-wrap gap-1 text-[0.95rem]">
         {links.map(({ href, label }) => {
           const active = currentPath === href;
           return (
@@ -24,7 +25,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
                 href={href}
                 aria-current={active ? 'page' : undefined}
                 class:list={[
-                  'block px-3 py-1.5 rounded-full transition-colors duration-300',
+                  'block px-2.5 sm:px-3 py-1.5 rounded-full transition-colors duration-300',
                   active ? 'bg-white/12 text-white' : 'text-white/70 hover:text-white hover:bg-white/8',
                 ]}
               >{label}</a>

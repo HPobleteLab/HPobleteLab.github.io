@@ -1,8 +1,8 @@
 [
   {
     "id": "peptides-on-surfaces",
-      "title": "Peptides Adsorption, fold and assemble on surfaces",
-    "teaser": "A surface dictates how a peptide behaves. Through molecular simulations on metals and carbon nanomaterials, we study which residues anchor and which structures survive. These rules allow us to rationally design peptides that stabilize nanoparticles, coat surfaces, or self-assemble.",
+    "title": "Peptides Adsorption, fold and assemble on surfaces",
+    "teaser": "A surface dictates how a peptide behaves: which residues anchor, and which structures survive adsorption.",
     "summary": "A solid surface is not a passive support: the same peptide can keep its fold on one material and lose it on another. We simulate peptides and proteins on metals such as gold and silver, on carbon surfaces such as graphite and graphene, and on other nanomaterials, to learn which residues anchor, which secondary structure survives adsorption and when neighbouring chains order into layers. Those rules let us choose sequences that stabilize a nanoparticle, coat a surface or self-assemble on it.",
     "image": "/images/peptide-hairpins-graphite.jpg",
     "alt": "Render of cyclic peptides folded into beta-hairpins and assembled side by side on a graphite surface.",
@@ -32,7 +32,7 @@
   {
     "id": "nanoparticles-and-membranes",
     "title": "What makes a nanoparticle choose a membrane",
-    "teaser": "The lipid coat of a hybrid nanoparticle sets which membranes it binds, and mimicking the target is not the whole story..",
+    "teaser": "The lipid coat of a hybrid nanoparticle sets which membranes it binds, and mimicking the target is not the whole story.",
     "summary": "Wrapping a polymer core in lipids changes which cells a nanoparticle binds. We model hybrid lipid-polymer nanoparticles together with their target membranes to find what sets that selectivity; our recent work shows that lipid composition determines it, beyond simply mimicking the target membrane. Current theses extend this to the predictive design of lipid coatings, uptake by macrophages and photocontrollable carriers for colorectal cancer.",
     "image": "/images/nanoparticle-membrane-scene.jpg",
     "alt": "Render of a nanoparticle embedded in a lipid membrane.",
