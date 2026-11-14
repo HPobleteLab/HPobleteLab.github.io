@@ -15,7 +15,7 @@ npm run build      # production build into dist/
 ## Where things live
 
 ```
-src/pages/              one file per page (index, research, publications, team, collaborators, 404)
+src/pages/              one file per page (index, research, publications, resources, team, collaborators, 404)
 src/components/         header, footer, home sections, team card
 src/content/team/       one JSON file per lab member
 src/data/               research lines, funding, publication list (generated) and its exclusion list
@@ -60,6 +60,10 @@ The icon files in `public/` (`favicon.ico`, `apple-touch-icon.png`) and `public/
 ## Add an image
 
 Keep the original in `renders-src/` and put a web-sized copy in `public/images/` (JPEG for opaque renders, WebP for transparent ones, around 1600 to 2400 px wide and under 400 kB). Files over 100 MB cannot be pushed to GitHub.
+
+## Add a resource
+
+Released code is listed in `src/data/resources.json`: `name`, `repo` (the GitHub URL), `owner` (whose repository it is), a `summary`, an optional longer `detail`, and optional `stack` and `people` lines.
 
 ## Add a collaborator
 

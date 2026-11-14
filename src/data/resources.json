@@ -1,0 +1,20 @@
+[
+  {
+    "name": "SPR_SpectrumAnalysis",
+    "repo": "https://github.com/HPobleteLab/SPR_SpectrumAnalysis",
+    "owner": "HPoblete Lab",
+    "summary": "Reads a folder of surface plasmon resonance spectra and returns the numbers you actually compare between samples: peak intensity, full width at half maximum, resonance wavelength and a stability index, with the baseline already subtracted.",
+    "detail": "Written for the nanoparticle work, where the position and width of the plasmon band say whether a colloid held together or aggregated. One command per measurement folder, one output folder per file.",
+    "stack": "Python, pandas, NumPy, matplotlib",
+    "people": "Francisca Salas-Sepúlveda, Horacio Poblete, Sergio D. Garcia Schejtman, Juan D. Figueroa"
+  },
+  {
+    "name": "pharmaco-suite",
+    "repo": "https://github.com/EduardoCubillos/pharmaco-suite",
+    "owner": "Eduardo Cubillos",
+    "summary": "A command-line toolkit for 3D pharmacophore modelling and de novo molecular design, built on the idea that a pharmacophore is only as good as the evidence behind it.",
+    "detail": "It derives three independent models of the same binding site, from the crystal contacts, from the ligands and from the receptor residues, and merges them into a weighted consensus, so every feature carries a record of how many lines of evidence support it. A second module grows new candidate molecules with a genetic algorithm over SELFIES, scored against that pharmacophore and filtered by ADMET and chemical diversity, and writes them out ready for docking.",
+    "stack": "Python, RDKit, PLIP, BioPython, SELFIES",
+    "people": "Eduardo Cubillos"
+  }
+]

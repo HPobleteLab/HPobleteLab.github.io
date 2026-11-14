@@ -3,6 +3,7 @@
 const links = [
   { href: '/research', label: 'Research' },
   { href: '/publications', label: 'Publications' },
+  { href: '/resources', label: 'Resources' },
   { href: '/team', label: 'Team' },
   { href: '/collaborators', label: 'Collaborators' },
 ];
@@ -32,7 +33,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
       </a>
 
       <nav aria-label="Main" class="max-md:w-full">
-        <ul class="flex gap-5 sm:gap-7 text-[0.95rem] max-md:text-sm">
+        <ul class="flex flex-wrap gap-x-5 sm:gap-x-7 gap-y-1 text-[0.95rem] max-md:text-sm">
           {links.map(({ href, label }) => {
             const active = currentPath === href;
             return (
