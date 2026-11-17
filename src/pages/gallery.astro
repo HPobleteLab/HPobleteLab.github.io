@@ -10,6 +10,7 @@ interface Figure {
   thumb?: string;
   title: string;
   alt: string;
+  note?: string;
   description: string;
   relatedId?: string;
   relatedLabel?: string;
@@ -78,6 +79,15 @@ const figures = gallery as Figure[];
           ]}
         >
           <h2 class="text-2xl md:text-3xl font-medium tracking-tight">{fig.title}</h2>
+
+          {/* Only the figures that are not a result carry a note, so the marker
+              means something wherever it appears instead of labelling everything. */}
+          {fig.note && (
+            <p class="mt-3 inline-block rounded-full bg-wash px-3 py-1 text-[0.85rem] text-muted ring-1 ring-line">
+              {fig.note}
+            </p>
+          )}
+
           <p class="mt-4 text-lg leading-relaxed text-muted max-w-[46ch]">{fig.description}</p>
 
           <p class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-[0.95rem]">

@@ -3,8 +3,9 @@
     "image": "/images/banner-2400.jpg",
     "thumb": "/images/banner-1200.jpg",
     "title": "Bio-nano interfaces",
-    "alt": "Two coated nanoparticles suspended above a flat lattice surface, with peptides adsorbed on the surface and small ion clusters between them.",
-    "description": "The three questions the group works on, in one frame: a lipid-coated particle approaching from one side, a second particle with a different coat on the other, peptides lying adsorbed on a flat nanosurface below, and free ions drifting in the space between. Nothing here is a single simulation. It is the scene the separate projects share.",
+    "alt": "Artistic composition: two coated nanoparticles suspended above a flat lattice surface, with peptides adsorbed on the surface and small ion clusters between them.",
+    "note": "Artistic composition, not a simulated system",
+    "description": "An illustration, not a result. The elements are drawn from the systems we work on — a lipid-coated particle, a second particle with a different coat, peptides adsorbed on a flat nanosurface, free ions in solution — but they are arranged for the picture, at scales and distances that no single calculation produced. It opens the site because it is the one frame where the three lines appear together. Every other figure here comes from a real system.",
     "relatedId": "peptides-on-surfaces",
     "relatedLabel": "Peptides on surfaces",
     "wide": true
