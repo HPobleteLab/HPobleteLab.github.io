@@ -42,32 +42,5 @@
     "relatedId": "nanoparticles-and-membranes",
     "relatedLabel": "Nanoparticles and membranes",
     "wide": true
-  },
-  {
-    "image": "/images/nanoparticle-membrane-front.webp",
-    "title": "Contact",
-    "alt": "Cut-out render of a nanoparticle resting on the surface of a lipid membrane, viewed from the front.",
-    "description": "The same system cut out of its background and seen from the front, with the particle resting against the membrane rather than buried in it. Read next to the render below, the two are the shallow and deep ends of the same contact.",
-    "relatedId": "nanoparticles-and-membranes",
-    "relatedLabel": "Nanoparticles and membranes",
-    "plate": "light"
-  },
-  {
-    "image": "/images/nanoparticle-membrane.webp",
-    "title": "Engulfment",
-    "alt": "Cut-out render of a nanoparticle sunk into a lipid membrane, with lipid tails wrapping around its lower half.",
-    "description": "Further in, with the membrane dimpled around the particle and lipid tails reaching up its sides. The cost of bending a membrane this far is what any model of uptake has to account for.",
-    "relatedId": "nanoparticles-and-membranes",
-    "relatedLabel": "Nanoparticles and membranes",
-    "plate": "light"
-  },
-  {
-    "image": "/images/nanoparticle-membrane-violet.webp",
-    "title": "The same scene, colder",
-    "alt": "Violet and lilac treatment of the nanoparticle embedded in a lipid membrane.",
-    "description": "A second colour treatment of the engulfed particle. It carries no extra information; it exists because the warm palette disappears against a dark slide and this one does not. Figures get made twice for reasons like that.",
-    "relatedId": "nanoparticles-and-membranes",
-    "relatedLabel": "Nanoparticles and membranes",
-    "plate": "light"
   }
 ]
